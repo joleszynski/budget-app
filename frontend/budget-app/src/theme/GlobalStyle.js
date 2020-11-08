@@ -16,6 +16,9 @@ const GlobalStyle = createGlobalStyle`
         user-select: none;
         -webkit-tap-highlight-color: transparent;
         outline: none;
+
+        margin: 0;
+        padding: 0;
     }
 
     html {
@@ -25,7 +28,6 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-size: 1.6rem;
         font-family: 'Montserrat', sans-serif;
-        background-color: #4A5C6A;
     }
 
 `;

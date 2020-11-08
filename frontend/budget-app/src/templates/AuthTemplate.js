@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Heading from 'components/atoms/Heading/Heading';
 
 const StyledWrapper = styled.div`
   margin: 150px auto;
@@ -25,9 +24,13 @@ const StyledAuthCard = styled.div`
   justify-content: space-around;
 `;
 
+const StyledHeading = styled.h2`
+  font-size: 23px;
+`;
+
 const AuthTemplate = ({ children }) => (
   <StyledWrapper>
-    <Heading>Log In</Heading>
+    <StyledHeading>Log In</StyledHeading>
     <StyledAuthCard>{children}</StyledAuthCard>
   </StyledWrapper>
 );

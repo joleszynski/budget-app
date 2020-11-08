@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { authSuccess } from 'actions';
+import { authenticate } from 'actions/index';
 import AuthTemplate from 'templates/AuthTemplate';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
@@ -18,28 +17,9 @@ class LoginPage extends React.Component {
     this.setState({ [target.id]: target.value });
   };
 
-  requestAuth = () => {
-    const { email, password } = this.state;
-    /* eslint-disable no-shadow */
-    const { authSuccess } = this.props;
-
-    axios
-      .post('http://localhost:3030/api/user/login', {
-        email,
-        password,
-      })
-      .then((response) => {
-        const { data } = response;
-        authSuccess(data);
-      })
-      .catch((err) => {
-        return err;
-      });
-  };
-
   render() {
     const { email, password } = this.state;
-    const { loggedIn } = this.props;
+    const { loggedIn, authenticateAction } = this.props;
 
     return loggedIn ? (
       <Redirect to="/" />
@@ -60,7 +40,7 @@ class LoginPage extends React.Component {
             value={password}
             onChange={this.handleChange}
           />
-          <Button onClick={() => this.requestAuth()}>Log In</Button>
+          <Button onClick={() => authenticateAction(email, password)}>Log In</Button>
         </>
       </AuthTemplate>
     );
@@ -76,13 +56,13 @@ const mapStateToProps = ({ auth }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authSuccess: (data) => dispatch(authSuccess(data)),
+    authenticateAction: (email, password) => dispatch(authenticate(email, password)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
-
 LoginPage.propTypes = {
-  authSuccess: PropTypes.func.isRequired,
+  authenticateAction: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

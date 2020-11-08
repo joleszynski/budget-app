@@ -1,8 +1,9 @@
-import { AUTH_SUCCESS } from 'actions';
+import { AUTH_FAILURE, AUTH_SUCCESS } from 'actions';
 
 const initialState = {
   loggedIn: false,
   user: null,
+  loginFailure: false,
 };
 
 export default function auth(state = initialState, { type, payload }) {
@@ -11,6 +12,14 @@ export default function auth(state = initialState, { type, payload }) {
       return {
         loggedIn: true,
         user: payload,
+        loginFailure: false,
+      };
+    case AUTH_FAILURE:
+      return {
+        loggedIn: false,
+        user: null,
+        dataError: payload,
+        loginFailure: true,
       };
     default:
       return state;
