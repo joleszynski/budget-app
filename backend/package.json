@@ -1,0 +1,28 @@
+{
+  "name": "budget-app",
+  "version": "1.0.0",
+  "description": "Budget App",
+  "main": "src",
+  "author": "Johny",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eslint": "7.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.9",
+    "prettier": "^2.1.2",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "2.21.2"
+  }
+}
