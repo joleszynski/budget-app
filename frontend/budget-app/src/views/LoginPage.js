@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { authSuccess } from 'actions';
 import AuthTemplate from 'templates/AuthTemplate';
 import Input from 'components/atoms/Input/Input';
@@ -29,7 +30,6 @@ class LoginPage extends React.Component {
       })
       .then((response) => {
         const { data } = response;
-        console.log('LoginPage');
         authSuccess(data);
       })
       .catch((err) => {
@@ -39,8 +39,11 @@ class LoginPage extends React.Component {
 
   render() {
     const { email, password } = this.state;
+    const { loggedIn } = this.props;
 
-    return (
+    return loggedIn ? (
+      <Redirect to="/" />
+    ) : (
       <AuthTemplate>
         <>
           <Input
@@ -64,14 +67,22 @@ class LoginPage extends React.Component {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  const { loggedIn } = auth;
+  return {
+    loggedIn,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     authSuccess: (data) => dispatch(authSuccess(data)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 
 LoginPage.propTypes = {
   authSuccess: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };

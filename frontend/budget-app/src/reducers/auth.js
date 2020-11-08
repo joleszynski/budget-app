@@ -5,16 +5,14 @@ const initialState = {
   user: null,
 };
 
-export default function auth(state = initialState, action) {
-  switch (action.type) {
+export default function auth(state = initialState, { type, payload }) {
+  switch (type) {
     case AUTH_SUCCESS:
-      console.log('OK');
       return {
         loggedIn: true,
-        user: action.payload,
+        user: payload,
       };
     default:
-      console.log('ERRRRR');
       return state;
   }
 }

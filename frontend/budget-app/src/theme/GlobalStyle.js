@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-size: 1.6rem;
         font-family: 'Montserrat', sans-serif;
+        background-color: #4A5C6A;
     }
 
 `;
