@@ -1,5 +1,5 @@
 //VALIDATION
-const Joi = require("joi");
+const Joi = require('joi');
 
 //Register validation
 const registerValidation = (data) => {
@@ -21,5 +21,4 @@ const loginValidation = (data) => {
 };
 
 module.exports.registerValidation = registerValidation;
-
 module.exports.loginValidation = loginValidation;

@@ -1,0 +1,13 @@
+[
+  {
+    "_id": "5fac3b52760c823bac387e67",
+    "name": "John Doe",
+    "email": "johny@email.com",
+    "password": "johny11",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFjM2I1Mjc2MGM4MjNiYWMzODdlNjciLCJpYXQiOjE2MDUxMjI5Mjh9.bqjsxiXEFF8iL_h5a0zFpNjgwzFWrs6IdSOjinuVX-c"
+  },
+  {
+    "accountName": "Konto testowe",
+    "accountValue": 1000
+  }
+]
