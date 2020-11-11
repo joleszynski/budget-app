@@ -13,10 +13,12 @@ const Button = styled.button`
     background-color: ${({ theme }) => theme.secondary};
   }
 
-  ${({ secondary }) =>
-    secondary &&
+  ${({ option }) =>
+    option &&
     css`
-      background-color: ${({ theme }) => theme.secondary};
+      width: 70px;
+      height: 15px;
+      font-size: 8px;
     `}
 `;
 
