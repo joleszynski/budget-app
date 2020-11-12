@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import MainHeading from 'components/atoms/MainHeading/MainHeading';
 
 const StyledHeadingWrapper = styled.div`
-  width: 60%;
-  margin-top: 40px;
+  width: 50%;
+  margin-top: 20px;
 `;
 
 const Logo = () => (

@@ -1,17 +1,18 @@
 import styled, { css } from 'styled-components';
 
 const MainHeading = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.primaryBlue};
+  font-family: ${({ theme }) => theme.mainFonts};
+  color: ${({ theme }) => theme.primaryBlack};
+  font-size: 72px;
   text-align: center;
 
   ${({ secondary }) =>
     secondary &&
     css`
-      font-size: 25px;
-      color: ${({ theme }) => theme.primaryBlack};
+      font-size: 35px;
+      color: ${({ theme }) => theme.moneyGreen};
       text-align: ${({ center }) => (center ? 'center' : 'right')};
-      font-weight: 300;
+      font-weight: ${({ theme }) => theme.light};
     `}
 `;
 

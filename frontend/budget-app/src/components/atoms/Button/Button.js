@@ -1,25 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Button = styled.button`
-  width: 200px;
-  height: 47px;
-  border: 1px solid ${({ theme }) => theme.secondary};
-  background-color: white;
+  width: 413px;
+  height: 76px;
+  border: 1px solid ${({ theme }) => theme.primaryBlack};
+  background-color: ${({ theme }) => theme.primaryBlack};
   cursor: pointer;
-  letter-spacing: 2px;
-  font-size: 20px;
+  font-size: 35px;
+  color: ${({ theme }) => theme.primaryWhite};
+  font-family: ${({ theme }) => theme.mainFonts};
 
-  &:active {
-    background-color: ${({ theme }) => theme.secondary};
+  &:hover {
+    background-color: ${({ theme }) => theme.secondaryBlack};
   }
-
-  ${({ option }) =>
-    option &&
-    css`
-      width: 70px;
-      height: 15px;
-      font-size: 8px;
-    `}
 `;
 
 export default Button;
