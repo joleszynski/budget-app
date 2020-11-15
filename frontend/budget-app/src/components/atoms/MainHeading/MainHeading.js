@@ -14,6 +14,13 @@ const MainHeading = styled.h1`
       text-align: ${({ center }) => (center ? 'center' : 'right')};
       font-weight: ${({ theme }) => theme.light};
     `}
+
+  ${({ tertiary }) =>
+    tertiary &&
+    css`
+      font-size: 35px;
+      color: ${({ theme }) => theme.primaryBlack};
+    `}
 `;
 
 export default MainHeading;

@@ -5,24 +5,24 @@ import AccountStateCard from 'components/molecules/AccountStateCard/AccountState
 const Profile = {
   accounts: [
     {
+      id: 1,
       nameAccount: 'Konto Test',
       valuesAccount: 1000,
     },
     {
-      nameAccount: 'Konto Test Dwa',
-      valuesAccount: 2000,
+      id: 2,
+      nameAccount: 'Konto Test Trzy',
+      valuesAccount: 3000,
     },
     {
-      nameAccount: 'Konto Test Dwa',
-      valuesAccount: 2000,
+      id: 3,
+      nameAccount: 'Konto Test Cztery',
+      valuesAccount: 4000,
     },
     {
-      nameAccount: 'Konto Test Dwa',
-      valuesAccount: 2000,
-    },
-    {
-      nameAccount: 'Konto Test Dwa',
-      valuesAccount: 2000,
+      id: 4,
+      nameAccount: 'Konto Pięć',
+      valuesAccount: 5000,
     },
   ],
 };
