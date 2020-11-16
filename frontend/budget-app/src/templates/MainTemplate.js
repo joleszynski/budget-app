@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/mainTheme';
+import Logo from 'components/atoms/Logo/Logo';
 
 const MainTemplate = ({ children }) => (
   <>
     <GlobalStyle />
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <Logo />
+      {children}
+    </ThemeProvider>
   </>
 );
 

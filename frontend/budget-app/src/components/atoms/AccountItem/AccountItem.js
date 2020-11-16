@@ -7,7 +7,7 @@ const Item = styled.div`
   height: 65px;
   font-size: 20px;
   font-weight: 600;
-  border-bottom: 1px solid ${({ theme }) => theme.primaryBlack};
+  border-bottom: 1px solid ${({ theme }) => theme.mainColor};
   display: flex;
   flex-direction: row;
 

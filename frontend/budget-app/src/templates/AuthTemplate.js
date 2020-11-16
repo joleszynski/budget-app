@@ -2,34 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Logo from 'components/molecules/Logo/Logo';
-import MainHeading from 'components/atoms/MainHeading/MainHeading';
+import Heading from 'components/atoms/Heading/Heading';
 
 const StyledWrapper = styled.div`
-  margin: 0 auto;
   width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const StyledAuthCard = styled.div`
-  width: 590px;
-  height: 660px;
-  margin-top: 40px;
-  border: 2px solid ${({ theme }) => theme.primaryBlack};
+  width: 90%;
+  max-width: 370px;
+  height: 500px;
+  margin: 30px auto 0 auto;
+  border: 2px solid ${({ theme }) => theme.mainColor};
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+
+  @media screen and (min-width: 768px) {
+    width: 60%;
+    max-width: 600px;
+    height: 500px;
+    margin-top: 60px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 100px;
+  }
 `;
 
 const StyledLink = styled(Link)`
-  font-family: ${({ theme }) => theme.mainFonts};
-  font-size: 27px;
-  color: ${({ theme }) => theme.primaryGrey};
+  font-family: ${({ theme }) => theme.decorativeFonts};
+  font-size: 20px;
+  color: ${({ theme }) => theme.greyColor};
   text-decoration: none;
 
   &:hover {
@@ -39,8 +45,8 @@ const StyledLink = styled(Link)`
   ${({ secondary }) =>
     secondary &&
     css`
-      font-size: 50px;
-      color: ${({ theme }) => theme.primaryBlack};
+      font-size: 40px;
+      color: ${({ theme }) => theme.mainColor};
       text-align: center;
       text-decoration: underline;
     `}
@@ -48,9 +54,8 @@ const StyledLink = styled(Link)`
 
 const AuthTemplate = ({ children }) => (
   <StyledWrapper>
-    <Logo />
     <StyledAuthCard>
-      <MainHeading tertiary>Log in</MainHeading>
+      <Heading>Log in</Heading>
       {children}
       <StyledLink to="#">Have you forgot your password ?</StyledLink>
       <StyledLink secondary="true" to="/register">
