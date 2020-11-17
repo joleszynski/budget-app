@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Button = styled.button`
   cursor: pointer;
@@ -13,6 +13,18 @@ const Button = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.hoverBlack};
   }
+
+  ${({ secondary }) =>
+    secondary &&
+    css`
+      background-color: ${({ theme }) => theme.whiteColor};
+      color: ${({ theme }) => theme.mainColor};
+
+      &:hover {
+        background-color: ${({ theme }) => theme.mainColor};
+        color: ${({ theme }) => theme.whiteColor};
+      }
+    `}
 `;
 
 export default Button;

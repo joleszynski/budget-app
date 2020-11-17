@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 
 const Item = styled.div`
   width: 90%;
@@ -38,10 +40,13 @@ const RightSideItem = styled.div`
   margin-right: 20px;
 `;
 
-const AccountItem = ({ id, nameAccount, valuesAccount }) => (
+const AccountItem = ({ id, nameAccount, valuesAccount, options }) => (
   <Item id={id}>
     <LeftSideItem>{nameAccount}</LeftSideItem>
-    <RightSideItem>{valuesAccount}</RightSideItem>
+    <RightSideItem>
+      {valuesAccount}
+      {options ? <ButtonIcon>-</ButtonIcon> : ''}
+    </RightSideItem>
   </Item>
 );
 
@@ -49,6 +54,14 @@ AccountItem.propTypes = {
   nameAccount: PropTypes.string.isRequired,
   valuesAccount: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
+  options: PropTypes.bool.isRequired,
 };
 
-export default AccountItem;
+const mapStateToProps = ({ toggle }) => {
+  const { options } = toggle;
+  return {
+    options,
+  };
+};
+
+export default connect(mapStateToProps, null)(AccountItem);
