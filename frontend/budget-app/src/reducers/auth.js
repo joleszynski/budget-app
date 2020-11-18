@@ -9,6 +9,8 @@ const initialState = {
 export default function auth(state = initialState, { type, payload }) {
   switch (type) {
     case AUTH_SUCCESS:
+      /* eslint-disable no-undef */
+      localStorage.setItem('auth-token', payload.data[0]);
       return {
         loggedIn: true,
         user: payload,

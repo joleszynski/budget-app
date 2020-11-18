@@ -40,19 +40,19 @@ const RightSideItem = styled.div`
   margin-right: 20px;
 `;
 
-const AccountItem = ({ id, nameAccount, valuesAccount, options }) => (
+const AccountItem = ({ id, accountName, accountValue, options }) => (
   <Item id={id}>
-    <LeftSideItem>{nameAccount}</LeftSideItem>
+    <LeftSideItem>{accountName}</LeftSideItem>
     <RightSideItem>
-      {valuesAccount}
+      {accountValue}
       {options ? <ButtonIcon>-</ButtonIcon> : ''}
     </RightSideItem>
   </Item>
 );
 
 AccountItem.propTypes = {
-  nameAccount: PropTypes.string.isRequired,
-  valuesAccount: PropTypes.number.isRequired,
+  accountName: PropTypes.string.isRequired,
+  accountValue: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   options: PropTypes.bool.isRequired,
 };

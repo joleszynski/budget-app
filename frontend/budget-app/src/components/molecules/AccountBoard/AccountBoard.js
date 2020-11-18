@@ -75,39 +75,31 @@ const StyledAddButtonWrapper = styled.div`
   margin: 30px 0 0 0;
 `;
 
-class AccountBoard extends React.Component {
-  /* eslint-disable react/no-unused-state */
-  state = {
-    options: false,
-  };
-
-  render() {
-    const { accounts, name, options, toggleAction } = this.props;
-    return (
-      <>
-        <StyledTemplateHeading>
-          <StyledButton secondary onClick={toggleAction}>
-            Options
-          </StyledButton>
-          <StyledHeadingText>
-            {name}{' '}
-            <span role="img" aria-label="accessible">
-              💸
-            </span>
-          </StyledHeadingText>
-        </StyledTemplateHeading>
-        <StyledItemsWrapper>
-          {accounts.map(({ id, nameAccount, valuesAccount }) => (
-            <AccountItem id={id} nameAccount={nameAccount} valuesAccount={valuesAccount} />
-          ))}
-          <StyledAddButtonWrapper>
-            {options ? <StyledButton secondary>Add account</StyledButton> : ''}
-          </StyledAddButtonWrapper>
-        </StyledItemsWrapper>
-      </>
-    );
-  }
-}
+const AccountBoard = ({ accounts, name, options, toggleAction }) => {
+  return (
+    <>
+      <StyledTemplateHeading>
+        <StyledButton secondary onClick={toggleAction}>
+          Options
+        </StyledButton>
+        <StyledHeadingText>
+          {name}{' '}
+          <span role="img" aria-label="accessible">
+            💸
+          </span>
+        </StyledHeadingText>
+      </StyledTemplateHeading>
+      <StyledItemsWrapper>
+        {accounts.map(({ accountName, accountValue }, i) => (
+          <AccountItem id={parseInt(i, 10)} accountName={accountName} accountValue={accountValue} />
+        ))}
+        <StyledAddButtonWrapper>
+          {options ? <StyledButton secondary>Add account</StyledButton> : ''}
+        </StyledAddButtonWrapper>
+      </StyledItemsWrapper>
+    </>
+  );
+};
 
 const mapStateToProps = ({ toggle }) => {
   const { options } = toggle;

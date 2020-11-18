@@ -8,8 +8,8 @@ const Root = () => (
   <Router>
     <MainTemplate>
       <Switch>
-        <Route exact path="/login" component={LoginPage} />
         <Route exact path="/" component={AccountsBalancePage} />
+        <Route path="/login" component={LoginPage} />
       </Switch>
     </MainTemplate>
   </Router>
