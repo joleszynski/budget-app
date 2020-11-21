@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import AccountItem from 'components/atoms/AccountItem/AccountItem';
-import { toggleOptions } from 'actions';
+import { displayModalOn, toggleOptions } from 'actions';
+import Modal from 'components/molecules/Modal/Modal';
 
 const StyledTemplateHeading = styled.div`
   width: 100%;
@@ -75,7 +76,14 @@ const StyledAddButtonWrapper = styled.div`
   margin: 30px 0 0 0;
 `;
 
-const AccountBoard = ({ accounts, name, options, toggleAction }) => {
+const AccountBoard = ({
+  accounts,
+  name,
+  options,
+  toggleAction,
+  modalDisplay,
+  displayModalOnAction,
+}) => {
   return (
     <>
       <StyledTemplateHeading>
@@ -90,11 +98,18 @@ const AccountBoard = ({ accounts, name, options, toggleAction }) => {
         </StyledHeadingText>
       </StyledTemplateHeading>
       <StyledItemsWrapper>
+        <Modal modalDisplay={modalDisplay} />
         {accounts.map(({ accountName, accountValue }, i) => (
           <AccountItem id={parseInt(i, 10)} accountName={accountName} accountValue={accountValue} />
         ))}
         <StyledAddButtonWrapper>
-          {options ? <StyledButton secondary>Add account</StyledButton> : ''}
+          {options ? (
+            <StyledButton onClick={displayModalOnAction} secondary>
+              Add account
+            </StyledButton>
+          ) : (
+            ''
+          )}
         </StyledAddButtonWrapper>
       </StyledItemsWrapper>
     </>
@@ -102,15 +117,17 @@ const AccountBoard = ({ accounts, name, options, toggleAction }) => {
 };
 
 const mapStateToProps = ({ toggle }) => {
-  const { options } = toggle;
+  const { options, modalDisplay } = toggle;
   return {
     options,
+    modalDisplay,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleAction: () => dispatch(toggleOptions()),
+    displayModalOnAction: () => dispatch(displayModalOn()),
   };
 };
 
@@ -118,7 +135,9 @@ AccountBoard.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.object),
   name: PropTypes.string.isRequired,
   toggleAction: PropTypes.func.isRequired,
+  displayModalOnAction: PropTypes.func.isRequired,
   options: PropTypes.bool.isRequired,
+  modalDisplay: PropTypes.bool.isRequired,
 };
 
 AccountBoard.defaultProps = {

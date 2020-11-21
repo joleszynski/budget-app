@@ -49,6 +49,20 @@ class AccountsBalancePage extends React.Component {
       .then((err) => err);
   }
 
+  componentDidUpdate() {
+    axios
+      .get('http://localhost:3030/api/accounts', {
+        headers: {
+          /* eslint-disable no-undef */
+          'auth-token': localStorage.getItem('auth-token'),
+        },
+      })
+      .then((response) => {
+        this.setState({ accounts: response.data });
+      })
+      .then((err) => err);
+  }
+
   render() {
     const { accounts } = this.state;
     return (
@@ -69,5 +83,3 @@ class AccountsBalancePage extends React.Component {
 }
 
 export default AccountsBalancePage;
-
-/* <AccountStateCard accounts={Profile.accounts} /> */

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
+import { deleteAccount } from 'actions';
 
 const Item = styled.div`
   width: 90%;
@@ -40,21 +41,34 @@ const RightSideItem = styled.div`
   margin-right: 20px;
 `;
 
-const AccountItem = ({ id, accountName, accountValue, options }) => (
-  <Item id={id}>
-    <LeftSideItem>{accountName}</LeftSideItem>
-    <RightSideItem>
-      {accountValue}
-      {options ? <ButtonIcon>-</ButtonIcon> : ''}
-    </RightSideItem>
-  </Item>
-);
+const AccountItem = ({ id, accountName, accountValue, options, deleteAccountAction }) => {
+  const deleteAccountEvent = (event) => {
+    deleteAccountAction(event.target.value);
+  };
+
+  return (
+    <Item id={id}>
+      <LeftSideItem>{accountName}</LeftSideItem>
+      <RightSideItem>
+        {accountValue}
+        {options ? (
+          <ButtonIcon value={accountName} onClick={(event) => deleteAccountEvent(event)}>
+            -
+          </ButtonIcon>
+        ) : (
+          ''
+        )}
+      </RightSideItem>
+    </Item>
+  );
+};
 
 AccountItem.propTypes = {
   accountName: PropTypes.string.isRequired,
   accountValue: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   options: PropTypes.bool.isRequired,
+  deleteAccountAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ toggle }) => {
@@ -64,4 +78,10 @@ const mapStateToProps = ({ toggle }) => {
   };
 };
 
-export default connect(mapStateToProps, null)(AccountItem);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteAccountAction: (accountName) => dispatch(deleteAccount(accountName)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountItem);

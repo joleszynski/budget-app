@@ -9,6 +9,6 @@ module.exports = function (req, res, next) {
     req.user = verified;
     next();
   } catch {
-    res.status(400).send('Valid TOken');
+    res.status(400).send('Valid Token');
   }
 };

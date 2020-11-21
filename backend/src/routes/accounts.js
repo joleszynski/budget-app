@@ -41,6 +41,7 @@ router.post('/add', verify, async (req, res) => {
 
 router.post('/delete', verify, async (req, res) => {
   const { body, user } = req;
+
   // //VALIDATION DATA
   const { error } = accountDeleteValidation(body);
   if (error) return res.status(400).send(error.details[0].message);
