@@ -7,6 +7,7 @@ const ButtonIcon = styled.button`
   border: 1px solid ${({ theme }) => theme.mainColor};
   background-color: ${({ theme }) => theme.mainColor};
   color: ${({ theme }) => theme.whiteColor};
+  margin-left: 20px;
 
   &:hover {
     background-color: ${({ theme }) => theme.hoverBlack};

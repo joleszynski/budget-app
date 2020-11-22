@@ -45,6 +45,24 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const StyledAddButton = styled(Button)`
+  width: 100px;
+  height: 25px;
+  font-size: 15px;
+
+  @media screen and (min-width: 768px) {
+    width: 130px;
+    height: 28px;
+    font-size: 17px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 150px;
+    height: 35px;
+    font-size: 23px;
+  }
+`;
+
 const StyledHeadingText = styled(Heading)`
   font-size: 20px;
   padding-right: 5px;
@@ -104,9 +122,9 @@ const AccountBoard = ({
         ))}
         <StyledAddButtonWrapper>
           {options ? (
-            <StyledButton onClick={displayModalOnAction} secondary>
+            <StyledAddButton onClick={displayModalOnAction} secondary>
               Add account
-            </StyledButton>
+            </StyledAddButton>
           ) : (
             ''
           )}

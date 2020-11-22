@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
-import { displayModalOff } from 'actions';
+import { addAccount, displayModalOff } from 'actions';
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -27,7 +27,7 @@ class Modal extends React.Component {
   };
 
   render() {
-    const { modalDisplay, displayModalOffAction } = this.props;
+    const { modalDisplay, displayModalOffAction, addAccountAction } = this.props;
     const { accountName, accountValue } = this.state;
 
     return (
@@ -46,7 +46,9 @@ class Modal extends React.Component {
           type="text"
           value={accountValue}
         />
-        <Button>Add</Button>
+        <Button onClick={() => addAccountAction(accountName, parseInt(accountValue, 10))}>
+          Add
+        </Button>
         <Button onClick={displayModalOffAction}>CANCEL</Button>
       </StyledWrapper>
     );
@@ -56,12 +58,15 @@ class Modal extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     displayModalOffAction: () => dispatch(displayModalOff()),
+    addAccountAction: (accountName, accountValue) =>
+      dispatch(addAccount(accountName, accountValue)),
   };
 };
 
 Modal.propTypes = {
   modalDisplay: PropTypes.bool.isRequired,
   displayModalOffAction: PropTypes.func.isRequired,
+  addAccountAction: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Modal);
