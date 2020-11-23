@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
-import { deleteAccount } from 'actions';
+import ButtonIcon from 'components/atoms/ButtonIconMinus/ButtonIconMinus';
+import { deleteAccount } from 'actions/accountBalance';
+import minusIconWhite from 'assets/icons/minusWhite.svg';
+import minusIconBlack from 'assets/icons/minusBlack.svg';
 
 const Item = styled.div`
-  width: 90%;
+  width: 96%;
   height: 65px;
   font-size: 20px;
   font-weight: 600;
@@ -52,9 +54,12 @@ const AccountItem = ({ id, accountName, accountValue, options, deleteAccountActi
       <RightSideItem>
         {accountValue}
         {options ? (
-          <ButtonIcon value={accountName} onClick={(event) => deleteAccountEvent(event)}>
-            -
-          </ButtonIcon>
+          <ButtonIcon
+            value={accountName}
+            onClick={(event) => deleteAccountEvent(event)}
+            iconWhite={minusIconWhite}
+            iconBlack={minusIconBlack}
+          />
         ) : (
           ''
         )}

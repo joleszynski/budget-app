@@ -21,7 +21,6 @@ export default function accountBalance(state = initialState, { type, payload }) 
       alert(payload);
       return state;
     case ADD_ACCOUNT_FAILURE:
-      console.log('FAIL');
       alert(payload);
       return state;
     default:

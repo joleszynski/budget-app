@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { authenticate } from 'actions/index';
+import { authenticate } from 'actions/auth';
 import AuthTemplate from 'templates/AuthTemplate';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';

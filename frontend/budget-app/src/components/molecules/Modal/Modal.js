@@ -4,16 +4,44 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
-import { addAccount, displayModalOff } from 'actions';
+import { addAccount } from 'actions/accountBalance';
+import { displayModalOff } from 'actions/toggle';
 
 const StyledWrapper = styled.div`
-  position: fixed;
-  top: 250px;
-  left: 300px;
-  width: 300px;
-  height: 300px;
-  background-color: grey;
   display: ${({ modalDisplay }) => (modalDisplay ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.35);
+`;
+
+const StyledModalWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledModal = styled.div`
+  width: 800px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+`;
+
+const StyledInnerModal = styled.div`
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 class Modal extends React.Component {
@@ -32,24 +60,30 @@ class Modal extends React.Component {
 
     return (
       <StyledWrapper modalDisplay={modalDisplay}>
-        <Input
-          onChange={this.handleChange}
-          id="accountName"
-          placeholder="Name"
-          type="text"
-          value={accountName}
-        />
-        <Input
-          onChange={this.handleChange}
-          id="accountValue"
-          placeholder="Value"
-          type="text"
-          value={accountValue}
-        />
-        <Button onClick={() => addAccountAction(accountName, parseInt(accountValue, 10))}>
-          Add
-        </Button>
-        <Button onClick={displayModalOffAction}>CANCEL</Button>
+        <StyledModalWrapper>
+          <StyledModal>
+            <StyledInnerModal>
+              <Input
+                onChange={this.handleChange}
+                id="accountName"
+                placeholder="Name"
+                type="text"
+                value={accountName}
+              />
+              <Input
+                onChange={this.handleChange}
+                id="accountValue"
+                placeholder="Value"
+                type="text"
+                value={accountValue}
+              />
+              <Button onClick={() => addAccountAction(accountName, parseInt(accountValue, 10))}>
+                Add
+              </Button>
+              <Button onClick={displayModalOffAction}>CANCEL</Button>
+            </StyledInnerModal>
+          </StyledModal>
+        </StyledModalWrapper>
       </StyledWrapper>
     );
   }

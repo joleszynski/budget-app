@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import AccountItem from 'components/atoms/AccountItem/AccountItem';
-import { displayModalOn, toggleOptions } from 'actions';
+import { displayModalOn, toggleOptions } from 'actions/toggle';
 import Modal from 'components/molecules/Modal/Modal';
 
 const StyledTemplateHeading = styled.div`
@@ -116,7 +116,6 @@ const AccountBoard = ({
         </StyledHeadingText>
       </StyledTemplateHeading>
       <StyledItemsWrapper>
-        <Modal modalDisplay={modalDisplay} />
         {accounts.map(({ accountName, accountValue }, i) => (
           <AccountItem id={parseInt(i, 10)} accountName={accountName} accountValue={accountValue} />
         ))}
@@ -130,6 +129,7 @@ const AccountBoard = ({
           )}
         </StyledAddButtonWrapper>
       </StyledItemsWrapper>
+      <Modal modalDisplay={modalDisplay} />
     </>
   );
 };
