@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Modal from 'components/molecules/Modal/Modal';
 import DownButtonsBar from 'components/molecules/DownButtonsBar/DownButtonsBar';
 import DashboardHeading from 'components/molecules/DashboardHeading/DashboardHeading';
+import ToggleModalButton from 'components/molecules/ToggleModalButton/ToggleModalButton';
 
 const StyledWrapper = styled.div`
   margin-top: 100px;
@@ -22,16 +25,30 @@ const StyledItemsWrapper = styled.div`
   }
 `;
 
-const DashboardTemplate = ({ children }) => (
-  <StyledWrapper>
-    <DashboardHeading />
-    <StyledItemsWrapper>{children}</StyledItemsWrapper>
-    <DownButtonsBar />
-  </StyledWrapper>
+const DashboardTemplate = ({ children, modalDisplay }) => (
+  <>
+    <StyledWrapper>
+      <DashboardHeading name="Account Balance" />
+      <StyledItemsWrapper>
+        {children}
+        <ToggleModalButton />
+      </StyledItemsWrapper>
+      <DownButtonsBar />
+    </StyledWrapper>
+    <Modal modalDisplay={modalDisplay} />
+  </>
 );
 
 DashboardTemplate.propTypes = {
   children: PropTypes.element.isRequired,
+  modalDisplay: PropTypes.bool.isRequired,
 };
 
-export default DashboardTemplate;
+const mapStateToProps = ({ toggle }) => {
+  const { modalDisplay } = toggle;
+  return {
+    modalDisplay,
+  };
+};
+
+export default connect(mapStateToProps, null)(DashboardTemplate);

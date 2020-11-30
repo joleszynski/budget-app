@@ -4,32 +4,6 @@ import AccountBoard from 'components/molecules/AccountBoard/AccountBoard';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
-
-// const Profile = {
-//   accounts: [
-//     {
-//       id: 1,
-//       nameAccount: 'Konto Test',
-//       valuesAccount: 1000,
-//     },
-//     {
-//       id: 2,
-//       nameAccount: 'Konto Test Trzy',
-//       valuesAccount: 3000,
-//     },
-//     {
-//       id: 3,
-//       nameAccount: 'Konto Test Cztery',
-//       valuesAccount: 4000,
-//     },
-//     {
-//       id: 4,
-//       nameAccount: 'Konto Pięć',
-//       valuesAccount: 5000,
-//     },
-//   ],
-// };
 
 class AccountsBalancePage extends React.Component {
   /* eslint-disable react/no-unused-state */
