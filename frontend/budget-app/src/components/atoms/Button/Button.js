@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
   font-family: ${({ theme }) => theme.decorativeFonts};
   cursor: pointer;
   width: 260px;

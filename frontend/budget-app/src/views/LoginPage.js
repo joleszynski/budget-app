@@ -22,7 +22,7 @@ class LoginPage extends React.Component {
     const { loggedIn, authenticateAction } = this.props;
 
     return loggedIn ? (
-      <Redirect to="/" />
+      <Redirect to="/accounts" />
     ) : (
       <AuthTemplate>
         <>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from 'components/atoms/Button/Button';
 import { toggleAccounts, toggleIncome, toggleOutgoings, toggleTransfers } from 'actions/toggle';
@@ -51,13 +52,18 @@ const DownButtonBar = ({
 }) => (
   <StyledButtonsWrapper>
     <StyledButtonLink
+      as={NavLink}
+      to="/accounts"
       secondary
       onClick={toggleAccountsAction}
       toggleBlack={dashboardState === 'accounts' ? true : null}
+      activeclass="active"
     >
       Account Balance
     </StyledButtonLink>
     <StyledButtonLink
+      as={NavLink}
+      to="/outgoings"
       secondary
       onClick={toggleOutgoingsAction}
       toggleBlack={dashboardState === 'outgoings' ? true : null}
@@ -65,6 +71,8 @@ const DownButtonBar = ({
       Outgoings
     </StyledButtonLink>
     <StyledButtonLink
+      as={NavLink}
+      to="/transfers"
       secondary
       onClick={toggleTransfersAction}
       toggleBlack={dashboardState === 'transfers' ? true : null}
@@ -72,6 +80,8 @@ const DownButtonBar = ({
       Transfers
     </StyledButtonLink>
     <StyledButtonLink
+      as={NavLink}
+      to="/income"
       secondary
       onClick={toggleIncomeAction}
       toggleBlack={dashboardState === 'income' ? true : null}

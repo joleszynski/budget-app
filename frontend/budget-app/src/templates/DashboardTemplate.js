@@ -15,6 +15,10 @@ const StyledWrapper = styled.div`
 const StyledItemsWrapper = styled.div`
   width: 90%;
   margin: 10px auto 0 auto;
+  border: 2px solid ${({ theme }) => theme.mainColor};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media screen and (min-width: 768px) {
     width: 70%;
@@ -25,10 +29,10 @@ const StyledItemsWrapper = styled.div`
   }
 `;
 
-const DashboardTemplate = ({ children, modalDisplay }) => (
+const DashboardTemplate = ({ children, modalDisplay, name }) => (
   <>
     <StyledWrapper>
-      <DashboardHeading name="Account Balance" />
+      <DashboardHeading name={name} />
       <StyledItemsWrapper>
         {children}
         <ToggleModalButton />
@@ -42,6 +46,7 @@ const DashboardTemplate = ({ children, modalDisplay }) => (
 DashboardTemplate.propTypes = {
   children: PropTypes.element.isRequired,
   modalDisplay: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ toggle }) => {
