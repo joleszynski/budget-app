@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Button from 'components/atoms/Button/Button';
+import { toggleAccounts, toggleIncome, toggleOutgoings, toggleTransfers } from 'actions/toggle';
 
 const StyledWrapper = styled.div`
   margin-top: 100px;
@@ -47,6 +49,9 @@ const StyledButtonsWrapper = styled.div`
 `;
 
 const StyledButtonLink = styled(Button)`
+  background-color: ${({ toggleBlack }) => (toggleBlack ? '#000' : '#FFF')};
+  color: ${({ toggleBlack }) => (toggleBlack ? '#FFF' : '#000')};
+
   @media screen and (min-width: 1024px) {
     width: 300px;
     height: 60px;
@@ -54,20 +59,72 @@ const StyledButtonLink = styled(Button)`
   }
 `;
 
-const DashboardTemplate = ({ children }) => (
+const DashboardTemplate = ({
+  children,
+  toggleAccountsAction,
+  toggleIncomeAction,
+  toggleOutgoingsAction,
+  toggleTransfersAction,
+  dashboardState,
+}) => (
   <StyledWrapper>
     <StyledItemsWrapper>{children}</StyledItemsWrapper>
     <StyledButtonsWrapper>
-      <StyledButtonLink secondary>Account Balance</StyledButtonLink>
-      <StyledButtonLink secondary>Outgoings</StyledButtonLink>
-      <StyledButtonLink secondary>Transfers</StyledButtonLink>
-      <StyledButtonLink secondary>Income</StyledButtonLink>
+      <StyledButtonLink
+        secondary
+        onClick={toggleAccountsAction}
+        toggleBlack={dashboardState === 'accounts' ? true : null}
+      >
+        Account Balance
+      </StyledButtonLink>
+      <StyledButtonLink
+        secondary
+        onClick={toggleOutgoingsAction}
+        toggleBlack={dashboardState === 'outgoings' ? true : null}
+      >
+        Outgoings
+      </StyledButtonLink>
+      <StyledButtonLink
+        secondary
+        onClick={toggleTransfersAction}
+        toggleBlack={dashboardState === 'transfers' ? true : null}
+      >
+        Transfers
+      </StyledButtonLink>
+      <StyledButtonLink
+        secondary
+        onClick={toggleIncomeAction}
+        toggleBlack={dashboardState === 'income' ? true : null}
+      >
+        Income
+      </StyledButtonLink>
     </StyledButtonsWrapper>
   </StyledWrapper>
 );
 
 DashboardTemplate.propTypes = {
   children: PropTypes.element.isRequired,
+  toggleAccountsAction: PropTypes.func.isRequired,
+  toggleIncomeAction: PropTypes.func.isRequired,
+  toggleOutgoingsAction: PropTypes.func.isRequired,
+  toggleTransfersAction: PropTypes.func.isRequired,
+  dashboardState: PropTypes.string.isRequired,
 };
 
-export default DashboardTemplate;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleAccountsAction: () => dispatch(toggleAccounts()),
+    toggleOutgoingsAction: () => dispatch(toggleOutgoings()),
+    toggleTransfersAction: () => dispatch(toggleTransfers()),
+    toggleIncomeAction: () => dispatch(toggleIncome()),
+  };
+};
+
+const mapStateToProps = ({ toggle }) => {
+  const { dashboardState } = toggle;
+  return {
+    dashboardState,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardTemplate);

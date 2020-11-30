@@ -1,8 +1,17 @@
-import { OPTIONS_BOOL, DISPLAY_MODAL_ON, DISPLAY_MODAL_OFF } from 'actions/index';
+import {
+  OPTIONS_BOOL,
+  DISPLAY_MODAL_ON,
+  DISPLAY_MODAL_OFF,
+  TOGGLE_ACCOUNTS,
+  TOGGLE_OUTGOINGS,
+  TOGGLE_TRANSFERS,
+  TOGGLE_INCOME,
+} from 'actions/index';
 
 const initialState = {
   options: false,
   modalDisplay: false,
+  dashboardState: 'accounts',
 };
 
 export default function toggle(state = initialState, { type }) {
@@ -21,6 +30,26 @@ export default function toggle(state = initialState, { type }) {
       return {
         ...state,
         modalDisplay: false,
+      };
+    case TOGGLE_ACCOUNTS:
+      return {
+        ...state,
+        dashboardState: 'accounts',
+      };
+    case TOGGLE_INCOME:
+      return {
+        ...state,
+        dashboardState: 'income',
+      };
+    case TOGGLE_OUTGOINGS:
+      return {
+        ...state,
+        dashboardState: 'outgoings',
+      };
+    case TOGGLE_TRANSFERS:
+      return {
+        ...state,
+        dashboardState: 'transfers',
       };
     default:
       return state;

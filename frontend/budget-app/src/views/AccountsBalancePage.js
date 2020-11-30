@@ -2,7 +2,9 @@ import React from 'react';
 import DashboardTemplate from 'templates/DashboardTemplate';
 import AccountBoard from 'components/molecules/AccountBoard/AccountBoard';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import { Redirect } from 'react-router-dom';
 
 // const Profile = {
 //   accounts: [
@@ -65,21 +67,42 @@ class AccountsBalancePage extends React.Component {
 
   render() {
     const { accounts } = this.state;
+    const { dashboardState } = this.props;
+    let children;
+
+    if (dashboardState === 'accounts') {
+      children = <AccountBoard accounts={accounts} name="Accounts Balance" />;
+    } else if (dashboardState === 'outgoings') {
+      children = 'Outgoings !!!';
+    }
+
     return (
       <>
-        {
-          /* eslint-disable no-undef */
-          localStorage.getItem('auth-token') ? (
-            <DashboardTemplate name="Accounts Balance">
-              <AccountBoard accounts={accounts} name="Accounts Balance" />
-            </DashboardTemplate>
-          ) : (
-            <Redirect to="/login" />
-          )
-        }
+        <DashboardTemplate name="AccountsBalance">{children}</DashboardTemplate>
       </>
     );
   }
 }
 
-export default AccountsBalancePage;
+/* eslint-disable no-undef */
+//   localStorage.getItem('auth-token') ? (
+//     <DashboardTemplate name="Accounts Balance">
+//       <AccountBoard accounts={accounts} name="Accounts Balance" />
+//     </DashboardTemplate>
+//   ) : (
+//     <Redirect to="/login" />
+//   )
+// }
+
+AccountsBalancePage.propTypes = {
+  dashboardState: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = ({ toggle }) => {
+  const { dashboardState } = toggle;
+  return {
+    dashboardState,
+  };
+};
+
+export default connect(mapStateToProps, null)(AccountsBalancePage);
