@@ -35,7 +35,7 @@ const StyledAddButton = styled(Button)`
 const ToggleModalButton = ({ options, displayModalOnAction }) => (
   <StyledAddButtonWrapper>
     {options ? (
-      <StyledAddButton onClick={displayModalOnAction} secondary>
+      <StyledAddButton onClick={displayModalOnAction} secondary="true">
         Add account
       </StyledAddButton>
     ) : (

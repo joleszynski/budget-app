@@ -4,6 +4,8 @@ import {
   DELETE_ACCOUNT_SUCCESS,
   ADD_ACCOUNT_FAILURE,
   ADD_ACCOUNT_SUCCESS,
+  GET_ACCOUNTS_LIST_SUCCESS,
+  GET_ACCOUNTS_LIST_FAIL,
 } from './index';
 
 export const deleteAccount = (accountName) => (dispatch) => {
@@ -54,5 +56,23 @@ export const addAccount = (accountName, accountValue) => (dispatch) => {
     .catch(({ response }) => {
       const { data } = response;
       dispatch({ type: ADD_ACCOUNT_FAILURE, payload: data });
+    });
+};
+
+export const getAccounts = (dispatch) => {
+  axios
+    .get('http://localhost:3030/api/accounts', {
+      headers: {
+        /* eslint-disable no-undef */
+        'auth-token': localStorage.getItem('auth-token'),
+      },
+    })
+    .then((response) => {
+      const { data } = response;
+      dispatch({ type: GET_ACCOUNTS_LIST_SUCCESS, payload: data });
+    })
+    .catch(({ response }) => {
+      const { data } = response;
+      dispatch({ type: GET_ACCOUNTS_LIST_FAIL, payload: data });
     });
 };

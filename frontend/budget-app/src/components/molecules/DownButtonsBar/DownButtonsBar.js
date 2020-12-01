@@ -32,9 +32,9 @@ const StyledButtonsWrapper = styled.div`
 `;
 
 const StyledButtonLink = styled(Button)`
-  background-color: ${({ toggleBlack, theme }) =>
-    toggleBlack ? theme.mainColor : theme.whiteColor};
-  color: ${({ toggleBlack, theme }) => (toggleBlack ? theme.whiteColor : theme.mainColor)};
+  background-color: ${({ toggleblack, theme }) =>
+    toggleblack ? theme.mainColor : theme.whiteColor};
+  color: ${({ toggleblack, theme }) => (toggleblack ? theme.whiteColor : theme.mainColor)};
 
   @media screen and (min-width: 1024px) {
     width: 300px;
@@ -54,9 +54,9 @@ const DownButtonBar = ({
     <StyledButtonLink
       as={NavLink}
       to="/accounts"
-      secondary
+      secondary="true"
       onClick={toggleAccountsAction}
-      toggleBlack={dashboardState === 'accounts' ? true : null}
+      toggleblack={dashboardState === 'accounts' ? 'true' : null}
       activeclass="active"
     >
       Account Balance
@@ -64,27 +64,27 @@ const DownButtonBar = ({
     <StyledButtonLink
       as={NavLink}
       to="/outgoings"
-      secondary
+      secondary="true"
       onClick={toggleOutgoingsAction}
-      toggleBlack={dashboardState === 'outgoings' ? true : null}
+      toggleblack={dashboardState === 'outgoings' ? 'true' : null}
     >
       Outgoings
     </StyledButtonLink>
     <StyledButtonLink
       as={NavLink}
       to="/transfers"
-      secondary
+      secondary="true"
       onClick={toggleTransfersAction}
-      toggleBlack={dashboardState === 'transfers' ? true : null}
+      toggleblack={dashboardState === 'transfers' ? 'true' : null}
     >
       Transfers
     </StyledButtonLink>
     <StyledButtonLink
       as={NavLink}
       to="/income"
-      secondary
+      secondary="true"
       onClick={toggleIncomeAction}
-      toggleBlack={dashboardState === 'income' ? true : null}
+      toggleblack={dashboardState === 'income' ? 'true' : null}
     >
       Income
     </StyledButtonLink>

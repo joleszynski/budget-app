@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import MainTemplate from 'templates/MainTemplate';
 import { PrivateRoute } from 'components/atoms/PrivateRoute/PrivateRoute';
 import LoginPage from 'views/LoginPage';
@@ -17,6 +17,7 @@ const Root = () => (
         <PrivateRoute exact path="/transfers" component={TransfersPage} />
         <PrivateRoute exact path="/income" component={IncomePage} />
         <Route path="/login" component={LoginPage} />
+        <Redirect from="*" to="/login" />
       </Switch>
     </MainTemplate>
   </Router>
