@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getAccounts } from 'actions/accountBalance';
 import DashboardTemplate from 'templates/DashboardTemplate';
 import AccountItem from 'components/atoms/AccountItem/AccountItem';
+import ToggleModalButton from 'components/molecules/ToggleModalButton/ToggleModalButton';
 
 class AccountsPage extends React.Component {
   /* eslint-disable */
@@ -41,6 +42,7 @@ class AccountsPage extends React.Component {
               accountValue={accountValue}
             />
           ))}
+          <ToggleModalButton />
         </>
       </DashboardTemplate>
     );

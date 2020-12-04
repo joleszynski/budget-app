@@ -10,7 +10,6 @@ const pageNameValue = {
 };
 
 const StyledWrapper = styled.div`
-  width: 90%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
@@ -18,7 +17,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledBox = styled.div`
-  width: 16%;
+  width: 18%;
   height: 30px;
   border-bottom: 1px solid ${({ theme }) => theme.mainColor};
 `;

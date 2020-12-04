@@ -1,10 +1,10 @@
 import React from 'react';
-import NameHeading from 'components/molecules/ColumnNameHeading/ColumnNameHeading';
 import DashboardTemplate from 'templates/DashboardTemplate';
+import DashboardInnerTemplate from 'templates/DashboradInnerTemplate';
 
 const TransfersPage = () => (
   <DashboardTemplate name="Transfers">
-    <NameHeading pageType="transfers" />
+    <DashboardInnerTemplate pageType="transfers" />
   </DashboardTemplate>
 );
 

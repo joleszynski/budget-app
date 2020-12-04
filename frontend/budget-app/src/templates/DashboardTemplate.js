@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Modal from 'components/molecules/Modal/Modal';
 import DownButtonsBar from 'components/molecules/DownButtonsBar/DownButtonsBar';
 import DashboardHeading from 'components/molecules/DashboardHeading/DashboardHeading';
-import ToggleModalButton from 'components/molecules/ToggleModalButton/ToggleModalButton';
 
 const StyledWrapper = styled.div`
   margin-top: 100px;
@@ -33,10 +32,7 @@ const DashboardTemplate = ({ children, modalDisplay, name }) => (
   <>
     <StyledWrapper>
       <DashboardHeading name={name} />
-      <StyledItemsWrapper>
-        {children}
-        <ToggleModalButton />
-      </StyledItemsWrapper>
+      <StyledItemsWrapper>{children}</StyledItemsWrapper>
       <DownButtonsBar />
     </StyledWrapper>
     <Modal modalDisplay={modalDisplay} />

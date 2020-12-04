@@ -1,10 +1,10 @@
 import React from 'react';
 import DashboardTemplate from 'templates/DashboardTemplate';
-import NameHeading from 'components/molecules/ColumnNameHeading/ColumnNameHeading';
+import DashboardInnerTemplate from 'templates/DashboradInnerTemplate';
 
 const OutgoingsPage = () => (
   <DashboardTemplate name="Outgoings">
-    <NameHeading pageType="outgoings" />
+    <DashboardInnerTemplate pageType="outgoings" />
   </DashboardTemplate>
 );
 

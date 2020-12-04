@@ -1,10 +1,10 @@
 import React from 'react';
-import NameHeading from 'components/molecules/ColumnNameHeading/ColumnNameHeading';
 import DashboardTemplate from 'templates/DashboardTemplate';
+import DashboardInnerTemplate from 'templates/DashboradInnerTemplate';
 
 const IncomePage = () => (
   <DashboardTemplate name="Income">
-    <NameHeading pageType="income" />
+    <DashboardInnerTemplate pageType="income" />
   </DashboardTemplate>
 );
 
