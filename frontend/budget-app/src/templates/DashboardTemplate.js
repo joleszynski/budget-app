@@ -18,6 +18,7 @@ const StyledItemsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     width: 70%;

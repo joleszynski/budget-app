@@ -24,6 +24,9 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
   accounts: [Object],
+  outgoings: [Object],
+  transfers: [Object],
+  income: [Object],
 });
 
 module.exports = mongoose.model('User', userSchema);

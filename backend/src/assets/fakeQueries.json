@@ -1,10 +1,10 @@
 [
   {
-    "_id": "5fac3b52760c823bac387e67",
+    "_id": "5fccbb479e86623a9cb3ba6a",
     "name": "John Doe",
     "email": "johny@email.com",
     "password": "johny11",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFjM2I1Mjc2MGM4MjNiYWMzODdlNjciLCJpYXQiOjE2MDUxMjI5Mjh9.bqjsxiXEFF8iL_h5a0zFpNjgwzFWrs6IdSOjinuVX-c"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNjYmI0NzllODY2MjNhOWNiM2JhNmEiLCJpYXQiOjE2MDcyNTI5MDV9.mmgn4TE8Qu7qpe7g_77zx5xwJuzIH_uzNKOPOAVeFqE"
   },
   {
     "accountName": "Konto testowe",
