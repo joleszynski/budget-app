@@ -5,7 +5,7 @@ const Joi = require('joi');
 const accountAddValidation = (data) => {
   const schema = Joi.object({
     accountName: Joi.string().min(4).required(),
-    accountValue: Joi.number().min(3).required(),
+    accountValue: Joi.number().precision(2).min(3).required(),
   });
   return schema.validate(data);
 };

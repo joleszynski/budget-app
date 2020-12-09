@@ -9,8 +9,8 @@ router.get('/', verify, async (req, res) => {
   const { user } = req;
 
   try {
-    const { transfers } = await User.findOne({ _id: user });
-    res.status(200).send(transfers);
+    const { income } = await User.findOne({ _id: user });
+    res.status(200).send(income);
   } catch (err) {
     res.status(400).send(err);
   }
@@ -18,6 +18,7 @@ router.get('/', verify, async (req, res) => {
 
 router.post('/add', verify, async (req, res) => {
   const { body, user } = req;
+  const { incomeToAccount, incomeValue } = body;
 
   //VALIDATION DATA
   // const { error } = outgoingsAddValidation(body);
@@ -25,38 +26,23 @@ router.post('/add', verify, async (req, res) => {
 
   const userObject = await User.findOne({
     _id: user,
-    accounts: { $elemMatch: { accountName: body.transferFromAccount } },
+    accounts: { $elemMatch: { accountName: incomeToAccount } },
   });
 
-  const { transferFromAccount, transferToAccount, transferValue } = body;
-
-  const fromAccountValue = userObject.accounts.find(
-    (el) => el.accountName === body.transferFromAccount,
-  ).accountValue;
-
-  const toAccountValue = userObject.accounts.find((el) => el.accountName === body.transferToAccount)
+  const currentAccountValue = userObject.accounts.find((el) => el.accountName === incomeToAccount)
     .accountValue;
 
-  const newFromAccountValue = parseFloat(fromAccountValue) - parseFloat(transferValue);
-  const newToAccountValue = parseFloat(toAccountValue) + parseFloat(transferValue);
+  const newToAccountValue = parseFloat(currentAccountValue) + parseFloat(incomeValue);
 
   body._id = ObjectID();
 
   try {
-    await User.updateOne({ _id: user }, { $push: { transfers: body } });
+    await User.updateOne({ _id: user }, { $push: { income: body } });
 
     await User.updateOne(
       {
         _id: user,
-        'accounts.accountName': transferFromAccount,
-      },
-      { $set: { 'accounts.$.accountValue': newFromAccountValue } },
-    );
-
-    await User.updateOne(
-      {
-        _id: user,
-        'accounts.accountName': transferToAccount,
+        'accounts.accountName': incomeToAccount,
       },
       { $set: { 'accounts.$.accountValue': newToAccountValue } },
     );

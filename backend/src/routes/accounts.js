@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const ObjectID = require('mongodb').ObjectID;
 const User = require('../model/User');
 const verify = require('./verifyToken');
 const { accountAddValidation, accountDeleteValidation } = require('../validation/accounts');
@@ -23,12 +24,17 @@ router.post('/add', verify, async (req, res) => {
   const { error } = accountAddValidation(body);
   if (error) return res.status(400).send(error.details[0].message);
 
+  const { accountValue } = body;
+  body.accountValue = parseFloat(accountValue);
+
   // Check if the accountName is already in user accounts
   const accountExist = await User.findOne({
     _id: user,
     accounts: { $elemMatch: { accountName: body.accountName } },
   });
   if (accountExist) return res.status(400).send('Account name already exist');
+
+  body._id = ObjectID();
 
   try {
     //Add account
