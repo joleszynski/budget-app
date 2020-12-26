@@ -66,4 +66,30 @@ router.post('/add', verify, async (req, res) => {
   }
 });
 
+router.post('/delete', verify, async (req, res) => {
+  const { body, user } = req;
+
+  //VALIDATION DATA
+
+  // Check if the outgoing record exist
+  const transferRecordExist = await User.findOne({
+    _id: user,
+    transfers: { $elemMatch: { _id: ObjectID(body.id) } },
+  });
+  if (!transferRecordExist) return res.status(400).send(`Transfer record is not exist !`);
+
+  try {
+    await User.updateOne(
+      {
+        _id: user,
+      },
+      { $pull: { transfers: { _id: ObjectID(body.id) } } },
+    );
+
+    res.status(200).send(`Success transfer delete !`);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 module.exports = router;

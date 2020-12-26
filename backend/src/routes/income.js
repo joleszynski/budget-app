@@ -52,4 +52,30 @@ router.post('/add', verify, async (req, res) => {
   }
 });
 
+router.post('/delete', verify, async (req, res) => {
+  const { body, user } = req;
+
+  //VALIDATION DATA
+
+  // Check if the outgoing record exist
+  const incomeRecordExist = await User.findOne({
+    _id: user,
+    income: { $elemMatch: { _id: ObjectID(body.id) } },
+  });
+  if (!incomeRecordExist) return res.status(400).send(`Income record is not exist !`);
+
+  try {
+    await User.updateOne(
+      {
+        _id: user,
+      },
+      { $pull: { income: { _id: ObjectID(body.id) } } },
+    );
+
+    res.status(200).send(`Success income delete !`);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 module.exports = router;
