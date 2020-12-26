@@ -9,16 +9,17 @@ const StyledWrapper = styled.div`
   width: 90%;
 `;
 
-const DashboardInnerTemplate = ({ pageType }) => (
+const DashboardInnerTemplate = ({ pageType, data }) => (
   <StyledWrapper>
     <NameHeading pageType={pageType} />
     <InputBar pageType={pageType} />
-    <RowValues />
+    <RowValues data={data} />
   </StyledWrapper>
 );
 
 DashboardInnerTemplate.propTypes = {
   pageType: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default DashboardInnerTemplate;
