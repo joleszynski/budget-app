@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const ObjectID = require('mongodb').ObjectID;
-const { body } = require('express-validator');
 const User = require('../model/User');
 const verify = require('./verifyToken');
 

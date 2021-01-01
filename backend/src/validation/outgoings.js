@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 // Add outgoings name and value validation
 const outgoingsAddValidation = (data) => {

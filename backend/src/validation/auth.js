@@ -1,5 +1,5 @@
 //VALIDATION
-const Joi = require('joi');
+import Joi from 'joi';
 
 //Register validation
 const registerValidation = (data) => {

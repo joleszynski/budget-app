@@ -1,11 +1,11 @@
 // VALIDATION
-const Joi = require('joi');
+import Joi from 'joi';
 
 // Add account name and value validation
 const accountAddValidation = (data) => {
   const schema = Joi.object({
-    accountName: Joi.string().min(4).required(),
-    accountValue: Joi.number().precision(2).min(3).required(),
+    name: Joi.string().min(4).required(),
+    value: Joi.number().precision(2).min(3).required(),
   });
   return schema.validate(data);
 };

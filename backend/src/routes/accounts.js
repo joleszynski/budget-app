@@ -1,8 +1,9 @@
-const router = require('express').Router();
-const ObjectID = require('mongodb').ObjectID;
-const User = require('../model/User');
-const verify = require('./verifyToken');
+import User from '../model/User';
+import verify from './verifyToken';
 const { accountAddValidation, accountDeleteValidation } = require('../validation/accounts');
+
+const ObjectID = require('mongodb').ObjectID;
+const router = require('express').Router();
 
 // Get all accounts list from User
 router.get('/', verify, async (req, res) => {
@@ -32,14 +33,14 @@ router.post('/add', verify, async (req, res) => {
     _id: user,
     accounts: { $elemMatch: { accountName: body.accountName } },
   });
-  if (accountExist) return res.status(400).send('Account name already exist');
+  if (accountExist) return res.status(200).send('Account name already exist');
 
   body._id = ObjectID();
 
   try {
     //Add account
     await User.updateOne({ _id: user }, { $push: { accounts: body } });
-    res.status(200).send('The account has been added');
+    res.status(200).send('Account added successfully !');
   } catch (err) {
     res.status(400).send(err);
   }

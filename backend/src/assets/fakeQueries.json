@@ -4,7 +4,7 @@
     "name": "John Doe",
     "email": "johny@email.com",
     "password": "johny11",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNjYmI0NzllODY2MjNhOWNiM2JhNmEiLCJpYXQiOjE2MDcyNTI5MDV9.mmgn4TE8Qu7qpe7g_77zx5xwJuzIH_uzNKOPOAVeFqE"
+    "token": ""
   },
   {
     "accountName": "Konto testowe",

@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const ObjectID = require('mongodb').ObjectID;
-const { body } = require('express-validator');
 const User = require('../model/User');
 const verify = require('./verifyToken');
 const { outgoingsAddValidation, outgoingsDeleteValidation } = require('../validation/outgoings');
@@ -13,7 +12,7 @@ router.get('/', verify, async (req, res) => {
     const { outgoings } = await User.findOne({ _id: user });
     res.status(200).send(outgoings);
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).json(err);
   }
 });
 
