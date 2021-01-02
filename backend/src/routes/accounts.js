@@ -11,9 +11,9 @@ router.get('/', verify, async (req, res) => {
 
   try {
     const { accounts } = await User.findOne({ _id: user });
-    res.status(200).send(accounts);
+    res.status(200).json(accounts);
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).json(err);
   }
 });
 
@@ -21,28 +21,28 @@ router.get('/', verify, async (req, res) => {
 router.post('/add', verify, async (req, res) => {
   const { body, user } = req;
 
+  body._id = ObjectID();
+
   //VALIDATION DATA
   const { error } = accountAddValidation(body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).json(error.details[0].message);
 
-  const { accountValue } = body;
-  body.accountValue = parseFloat(accountValue);
+  const { value } = body;
+  body.value = parseFloat(value);
 
   // Check if the accountName is already in user accounts
   const accountExist = await User.findOne({
     _id: user,
-    accounts: { $elemMatch: { accountName: body.accountName } },
+    accounts: { $elemMatch: { name: body.name } },
   });
-  if (accountExist) return res.status(200).send('Account name already exist');
-
-  body._id = ObjectID();
+  if (accountExist) return res.status(200).json('Account name already exist');
 
   try {
     //Add account
     await User.updateOne({ _id: user }, { $push: { accounts: body } });
-    res.status(200).send('Account added successfully !');
+    res.status(200).json({ message: 'Account added successfully !', account: body });
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).json(err);
   }
 });
 
@@ -51,14 +51,14 @@ router.post('/delete', verify, async (req, res) => {
 
   // //VALIDATION DATA
   const { error } = accountDeleteValidation(body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).json(error.details[0].message);
 
   // Check if the accountName is already in user accounts
   const accountExist = await User.findOne({
     _id: user,
-    accounts: { $elemMatch: { accountName: body.accountName } },
+    accounts: { $elemMatch: { _id: ObjectID(body.id) } },
   });
-  if (!accountExist) return res.status(400).send('Account is not exist');
+  if (!accountExist) return res.status(400).json('Account is not exist');
 
   try {
     // Delete account
@@ -66,11 +66,11 @@ router.post('/delete', verify, async (req, res) => {
       {
         _id: user,
       },
-      { $pull: { accounts: { accountName: body.accountName } } },
+      { $pull: { accounts: { _id: ObjectID(body.id) } } },
     );
-    res.status(200).send('The account has been deleted');
+    res.status(200).json('The account has been deleted');
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).json(err);
   }
 });
 
