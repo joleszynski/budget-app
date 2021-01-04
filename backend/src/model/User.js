@@ -4,20 +4,20 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    min: 6,
-    max: 255,
+    min: 3,
+    max: 100,
   },
   email: {
     type: String,
     required: true,
-    max: 255,
     min: 6,
+    max: 100,
   },
   password: {
     type: String,
     required: true,
-    max: 1024,
     min: 6,
+    max: 100,
   },
   date: {
     type: Date,
@@ -29,4 +29,4 @@ const userSchema = new mongoose.Schema({
   income: [Object],
 });
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);

@@ -1,4 +1,4 @@
-const { seedDatabase } = require('./seeds');
+const { seedDatabase } = require('../seeds');
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
