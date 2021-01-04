@@ -11,8 +11,8 @@ describe('Outgoing tests', () => {
   let id;
   let token;
   const demoUser = {
-    name: 'Johny Outgoing',
-    email: 'johny@outgoing.com',
+    name: 'Johny Income',
+    email: 'johny@income.com',
     password: 'johny11',
   };
   const demoAccount = {
@@ -36,32 +36,14 @@ describe('Outgoing tests', () => {
     await request.post('/api/accounts/add').send(demoAccount).set('auth-token', token);
   });
 
-  it('POST Add account sucesfull', async (done) => {
-    const res = await request.post('/api/outgoings/add').send(demoRecord).set('auth-token', token);
+  it('POST Add income record', async (done) => {
+    const res = await request.post('/api/income/add').send(demoRecord).set('auth-token', token);
 
     expect(res.status).toBe(200);
-    expect(res.body.message).toBe('Success outgoing add');
+    expect(res.body).toBe('Success income add');
 
     const user = await User.findOne({ email: demoUser.email });
-    expect(user.outgoings.length).toBe(1);
-
-    id = res.body.record._id;
-
-    done();
-  });
-
-  it('POST Delete account sucesfull', async (done) => {
-    const res = await request
-      .post('/api/outgoings/delete')
-      .send({ id: id })
-      .set('auth-token', token);
-
-    expect(res.status).toBe(200);
-    expect(res.body).toBe('Success outgoing delete !');
-
-    const user = await User.findOne({ email: demoUser.email });
-
-    expect(user.accounts[0].value).toBe(500);
+    expect(user.income.length).toBe(1);
 
     done();
   });
