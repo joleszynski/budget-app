@@ -4,14 +4,12 @@ import joiObjectid from 'joi-objectid';
 
 Joi.objectId = joiObjectid(Joi);
 
-// Add account name and value validation
-const addValidation = (data) => {
+// Add account name delete validation
+const deleteValidation = (data) => {
   const schema = Joi.object({
     id: Joi.objectId().required(),
-    name: Joi.string().min(4).max(50).required(),
-    value: Joi.number().precision(2).required(),
   });
   return schema.validate(data);
 };
 
-export default addValidation;
+export default deleteValidation;

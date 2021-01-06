@@ -24,7 +24,7 @@ describe('Accounts add tests', () => {
       .set('auth-token', token)
       .send(demoAccount);
 
-    id = accountID.body.account._id;
+    id = accountID.body.account.id;
   });
 
   it('POST Add account successfull', async (done) => {
@@ -34,7 +34,7 @@ describe('Accounts add tests', () => {
       .send({ id: id });
 
     expect(res.status).toBe(200);
-    expect(res.body).toBe('The account has been deleted');
+    expect(res.body.message).toBe('The account has been deleted');
 
     const user = await User.findOne({ name: demoUser.name });
     const accounts = user.accounts;
