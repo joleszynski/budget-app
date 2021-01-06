@@ -16,7 +16,6 @@ setupDB();
 
 describe('Outgoing list tests', () => {
   let token;
-  let id;
   beforeAll(async () => {
     await request.post(urlPrefixUser + '/register').send(demoUser);
     const user = await request
