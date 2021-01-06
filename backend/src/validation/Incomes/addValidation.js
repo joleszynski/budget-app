@@ -1,9 +1,13 @@
+// VALIDATION
 import Joi from 'joi';
+import joiObjectid from 'joi-objectid';
+
+Joi.objectId = joiObjectid(Joi);
 
 // Add outgoings name and value validation
 const addValidation = (data) => {
   const schema = Joi.object({
-    _id: Joi.required(),
+    id: Joi.objectId().required(),
     date: Joi.date(),
     account: Joi.string().min(4).required(),
     category: Joi.string().min(4).required(),
@@ -12,13 +16,4 @@ const addValidation = (data) => {
   return schema.validate(data);
 };
 
-// Add outgoings name delete validation
-const deleteValidation = (data) => {
-  const schema = Joi.object({
-    id: Joi.required(),
-  });
-  return schema.validate(data);
-};
-
-module.exports.addValidation = addValidation;
-module.exports.deleteValidation = deleteValidation;
+export default addValidation;

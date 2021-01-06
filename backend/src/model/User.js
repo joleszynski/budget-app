@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   accounts: [Object],
   outgoings: [Object],
   transfers: [Object],
-  income: [Object],
+  incomes: [Object],
 });
 
 export default mongoose.model('User', userSchema);

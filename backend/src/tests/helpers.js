@@ -1,6 +1,7 @@
 export const urlPrefixUser = '/api/user';
 export const urlPrefixAccounts = '/api/accounts';
 export const urlPrefixOutgoings = '/api/outgoings';
+export const urlPrefixIncomes = '/api/incomes';
 export const demoUser = {
   name: 'Johny',
   email: 'johny@test.com',
@@ -14,5 +15,11 @@ export const demoOutgoingRecord = {
   date: '12.12.2021',
   account: 'Konto Testowe 1',
   category: 'Jedzenie',
+  value: 500,
+};
+export const demoIncomeRecord = {
+  date: '12.12.2021',
+  account: 'Konto Testowe 1',
+  category: 'Wypłata',
   value: 500,
 };
