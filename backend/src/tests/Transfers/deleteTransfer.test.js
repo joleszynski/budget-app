@@ -3,19 +3,20 @@ import User from '../../model/User';
 import supertest from 'supertest';
 import { setupDB } from '../../config/test-setup';
 import {
-  urlPrefixIncomes,
+  urlPrefixTransfers,
   urlPrefixAccounts,
   urlPrefixUser,
   demoUser,
   demoAccount,
-  demoIncomeRecord,
+  demoAccount_2,
+  demoTransferRecord_1,
 } from '../helpers';
 
 const request = supertest(app);
 
 setupDB();
 
-describe('Incomes add tests', () => {
+describe('Transfers add tests', () => {
   let token;
   let id;
 
@@ -31,27 +32,33 @@ describe('Incomes add tests', () => {
       .send(demoAccount)
       .set('auth-token', token);
 
-    const incomeRecordID = await request
-      .post(urlPrefixIncomes + '/add')
-      .send(demoIncomeRecord)
+    await request
+      .post(urlPrefixAccounts + '/add')
+      .send(demoAccount_2)
       .set('auth-token', token);
 
-    id = incomeRecordID.body.record.id;
+    const transferRecordID = await request
+      .post(urlPrefixTransfers + '/add')
+      .send(demoTransferRecord_1)
+      .set('auth-token', token);
+
+    id = transferRecordID.body.record.id;
   });
 
-  it('POST succesfull income record delete', async (done) => {
+  it('POST succesfull transfer record delete', async (done) => {
     const res = await request
-      .post(urlPrefixIncomes + '/delete')
+      .post(urlPrefixTransfers + '/delete')
       .send({ id: id })
       .set('auth-token', token);
 
     expect(res.status).toBe(200);
-    expect(res.body.message).toBe('Success income delete !');
+    expect(res.body.message).toBe('Success transfer delete !');
 
     const user = await User.findOne({ email: demoUser.email });
-    expect(user.incomes.length).toBe(0);
+    expect(user.transfers.length).toBe(0);
 
-    expect(user.accounts[0].value).toBe(1500);
+    expect(user.accounts[0].value).toBe(1000);
+    expect(user.accounts[1].value).toBe(2000);
 
     done();
   });
