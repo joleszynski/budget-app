@@ -7,7 +7,7 @@ const listOutgoings = async (req, res) => {
     const { outgoings } = await User.findOne({ _id: user });
     res.status(200).json({ outgoings: outgoings });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ message: err });
   }
 };
 

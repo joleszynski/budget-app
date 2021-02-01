@@ -10,6 +10,7 @@ const pageNameValue = {
 };
 
 const StyledWrapper = styled.div`
+  width: 95%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;

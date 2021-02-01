@@ -7,7 +7,6 @@ const ButtonIcon = styled.button`
   height: 25px;
   background-color: ${({ theme }) => theme.whiteColor};
   background-image: url(${({ iconBlack }) => iconBlack});
-  margin-left: 20px;
 
   &:hover {
     background-color: #000;

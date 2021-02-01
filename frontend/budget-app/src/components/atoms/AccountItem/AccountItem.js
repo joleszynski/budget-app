@@ -52,7 +52,7 @@ const AccountItem = ({ id, accountName, accountValue, options, deleteAccountActi
     <Item id={id}>
       <LeftSideItem>{accountName}</LeftSideItem>
       <RightSideItem>
-        {accountValue}
+        {parseFloat(accountValue).toFixed(2)}
         {options ? (
           <ButtonIcon
             id={id}
