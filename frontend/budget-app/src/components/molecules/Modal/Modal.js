@@ -46,8 +46,8 @@ const StyledInnerModal = styled.div`
 
 class Modal extends React.Component {
   state = {
-    accountName: '',
-    accountValue: 0,
+    name: '',
+    value: 0,
   };
 
   handleChange = ({ target }) => {
@@ -56,7 +56,7 @@ class Modal extends React.Component {
 
   render() {
     const { modalDisplay, displayModalOffAction, addAccountAction } = this.props;
-    const { accountName, accountValue } = this.state;
+    const { name, value } = this.state;
 
     return (
       <StyledWrapper modalDisplay={modalDisplay}>
@@ -65,19 +65,21 @@ class Modal extends React.Component {
             <StyledInnerModal>
               <Input
                 onChange={this.handleChange}
-                id="accountName"
+                id="name"
                 placeholder="Name"
                 type="text"
-                value={accountName}
+                value={name}
               />
               <Input
                 onChange={this.handleChange}
-                id="accountValue"
+                id="value"
                 placeholder="Value"
                 type="text"
-                value={accountValue}
+                value={value}
               />
-              <Button onClick={() => addAccountAction(accountName, parseInt(accountValue, 10))}>
+              <Button
+                onClick={() => addAccountAction(name, parseFloat(value), displayModalOffAction())}
+              >
                 Add
               </Button>
               <Button onClick={displayModalOffAction}>CANCEL</Button>

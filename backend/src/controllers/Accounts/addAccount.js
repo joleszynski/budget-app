@@ -14,14 +14,14 @@ const addAccount = async (req, res) => {
   if (error) return res.status(400).json(error.details[0].message);
 
   const { value } = body;
-  body.value = parseFloat(value);
+  body.value = parseFloat(value).toFixed(2);
 
   // Check if the accountName is already in user accounts
   const accountExist = await User.findOne({
     _id: user,
     accounts: { $elemMatch: { name: body.name } },
   });
-  if (accountExist) return res.status(200).json('Account name already exist');
+  if (accountExist) return res.status(200).json({ message: 'Account name already exist' });
 
   try {
     //Add account

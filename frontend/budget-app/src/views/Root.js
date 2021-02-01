@@ -7,6 +7,7 @@ import AccountsPage from 'views/AccountsPage';
 import OutgoingsPage from 'views/OutgoingsPage';
 import TransfersPage from 'views/TransfersPage';
 import IncomePage from 'views/IncomePage';
+import RegisterPage from 'views/RegisterPage';
 
 const Root = () => (
   <Router>
@@ -16,6 +17,7 @@ const Root = () => (
         <PrivateRoute exact path="/outgoings" component={OutgoingsPage} />
         <PrivateRoute exact path="/transfers" component={TransfersPage} />
         <PrivateRoute exact path="/income" component={IncomePage} />
+        <Route path="/register" component={RegisterPage} />
         <Route path="/login" component={LoginPage} />
         <Redirect from="*" to="/login" />
       </Switch>

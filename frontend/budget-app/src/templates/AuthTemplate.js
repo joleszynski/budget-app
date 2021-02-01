@@ -52,10 +52,10 @@ const StyledLink = styled(Link)`
     `}
 `;
 
-const AuthTemplate = ({ children }) => (
+const AuthTemplate = ({ children, title }) => (
   <StyledWrapper>
     <StyledAuthCard>
-      <Heading>Log in</Heading>
+      <Heading>{title}</Heading>
       {children}
       <StyledLink to="#">Have you forgot your password ?</StyledLink>
       <StyledLink secondary="true" to="/register">
@@ -67,6 +67,7 @@ const AuthTemplate = ({ children }) => (
 
 AuthTemplate.propTypes = {
   children: PropTypes.element.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default AuthTemplate;

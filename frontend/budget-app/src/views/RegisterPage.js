@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { authenticate } from 'actions/auth';
+import { register } from 'actions/auth';
 import AuthTemplate from 'templates/AuthTemplate';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 
-class LoginPage extends React.Component {
+class RegisterPage extends React.Component {
   state = {
+    name: '',
     email: '',
     password: '',
   };
@@ -18,14 +19,21 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { email, password } = this.state;
-    const { loggedIn, authenticateAction } = this.props;
+    const { email, password, name } = this.state;
+    const { registered, registerAction } = this.props;
 
-    return loggedIn ? (
-      <Redirect to="/accounts" />
+    return registered ? (
+      <Redirect to="/login" />
     ) : (
-      <AuthTemplate title="Log In">
+      <AuthTemplate title="Register">
         <>
+          <Input
+            id="name"
+            placeholder="Name"
+            type="text"
+            value={name}
+            onChange={this.handleChange}
+          />
           <Input
             id="email"
             placeholder="Email"
@@ -40,7 +48,7 @@ class LoginPage extends React.Component {
             value={password}
             onChange={this.handleChange}
           />
-          <Button onClick={() => authenticateAction(email, password)}>Log In</Button>
+          <Button onClick={() => registerAction(name, email, password)}>Register</Button>
         </>
       </AuthTemplate>
     );
@@ -48,21 +56,21 @@ class LoginPage extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { loggedIn } = auth;
+  const { registered } = auth;
   return {
-    loggedIn,
+    registered,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authenticateAction: (email, password) => dispatch(authenticate(email, password)),
+    registerAction: (name, email, password) => dispatch(register(name, email, password)),
   };
 };
 
-LoginPage.propTypes = {
-  authenticateAction: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
+RegisterPage.propTypes = {
+  registerAction: PropTypes.func.isRequired,
+  registered: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

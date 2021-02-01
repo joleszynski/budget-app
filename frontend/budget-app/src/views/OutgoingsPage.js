@@ -10,16 +10,16 @@ class OutgoingsPage extends React.Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3030/api/outgoings', {
+      .get('http://localhost:5000/api/outgoings', {
         headers: {
           /* eslint-disable no-undef */
           'auth-token': localStorage.getItem('auth-token'),
         },
       })
       .then((response) => {
-        const { data } = response;
-        this.setState({ data });
-        console.log(data);
+        const { outgoings } = response;
+        this.setState({ data: outgoings });
+        // console.log(data);
       })
       .catch(({ response }) => {
         const { data } = response;

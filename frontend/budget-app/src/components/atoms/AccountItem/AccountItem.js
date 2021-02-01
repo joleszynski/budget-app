@@ -45,7 +45,7 @@ const RightSideItem = styled.div`
 
 const AccountItem = ({ id, accountName, accountValue, options, deleteAccountAction }) => {
   const deleteAccountEvent = (event) => {
-    deleteAccountAction(event.target.value);
+    deleteAccountAction(event.target.id);
   };
 
   return (
@@ -55,6 +55,7 @@ const AccountItem = ({ id, accountName, accountValue, options, deleteAccountActi
         {accountValue}
         {options ? (
           <ButtonIcon
+            id={id}
             value={accountName}
             onClick={(event) => deleteAccountEvent(event)}
             iconWhite={minusIconWhite}
@@ -69,9 +70,9 @@ const AccountItem = ({ id, accountName, accountValue, options, deleteAccountActi
 };
 
 AccountItem.propTypes = {
+  id: PropTypes.string.isRequired,
   accountName: PropTypes.string.isRequired,
-  accountValue: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
+  accountValue: PropTypes.string.isRequired,
   options: PropTypes.bool.isRequired,
   deleteAccountAction: PropTypes.func.isRequired,
 };
@@ -85,7 +86,7 @@ const mapStateToProps = ({ toggle }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteAccountAction: (accountName) => dispatch(deleteAccount(accountName)),
+    deleteAccountAction: (id) => dispatch(deleteAccount(id)),
   };
 };
 

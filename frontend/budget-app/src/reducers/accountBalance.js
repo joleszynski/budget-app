@@ -8,7 +8,7 @@ import {
 } from 'actions';
 
 const initialState = {
-  accounts: null,
+  accounts: [],
 };
 
 /* eslint-disable no-alert */
@@ -16,32 +16,31 @@ const initialState = {
 export default function accountBalance(state = initialState, { type, payload }) {
   switch (type) {
     case DELETE_ACCOUNT_SUCCESS:
-      alert(payload);
+      alert(payload.message);
       return {
         ...state,
       };
     case DELETE_ACCOUNT_FAILURE:
-      alert(payload);
+      alert(payload.message);
       return {
         ...state,
       };
     case ADD_ACCOUNT_SUCCESS:
       alert(payload);
       return {
-        ...state,
+        accounts: [...accounts, payload.account],
       };
     case ADD_ACCOUNT_FAILURE:
-      alert(payload);
+      alert(payload.message);
       return {
         ...state,
       };
     case GET_ACCOUNTS_LIST_SUCCESS:
       return {
-        ...state,
         accounts: payload,
       };
     case GET_ACCOUNTS_LIST_FAIL:
-      alert(payload);
+      alert(payload.message);
       return {
         ...state,
       };

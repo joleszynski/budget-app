@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
     const savedUser = await user.save();
     res.status(200).json({ message: 'Registered successfull !' });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ text: err });
   }
 };
 

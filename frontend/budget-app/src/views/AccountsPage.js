@@ -7,40 +7,20 @@ import AccountItem from 'components/atoms/AccountItem/AccountItem';
 import ToggleModalButton from 'components/molecules/ToggleModalButton/ToggleModalButton';
 
 class AccountsPage extends React.Component {
-  /* eslint-disable */
-  state = {
-    accounts: [],
-  };
-
   componentDidMount() {
     const { getAccountsAction } = this.props;
     getAccountsAction();
   }
 
-  componentDidUpdate() {
-    const { getAccountsAction } = this.props;
-    getAccountsAction();
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.state.accounts !== nextProps.accounts) {
-      this.setState({ accounts: nextProps.accounts });
-    }
-  }
-
   render() {
-    const { accounts } = this.state;
+    const { accounts } = this.props;
 
     return (
       <DashboardTemplate name="Accounts Balance">
         <>
           {' '}
-          {accounts.map(({ accountName, accountValue }, i) => (
-            <AccountItem
-              id={parseInt(i, 10)}
-              accountName={accountName}
-              accountValue={accountValue}
-            />
+          {accounts.map(({ id, name, value }) => (
+            <AccountItem key={id} id={id} accountName={name} accountValue={value} />
           ))}
           <ToggleModalButton />
         </>
@@ -51,7 +31,6 @@ class AccountsPage extends React.Component {
 
 AccountsPage.propTypes = {
   getAccountsAction: PropTypes.func.isRequired,
-  /* eslint-disable */
   accounts: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -68,7 +47,7 @@ const mapStateToProps = ({ accountBalance }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAccountsAction: async () => dispatch(await getAccounts),
+    getAccountsAction: () => dispatch(getAccounts),
   };
 };
 

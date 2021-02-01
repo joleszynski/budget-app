@@ -25,7 +25,7 @@ const deleteAccount = async (req, res) => {
       },
       { $pull: { accounts: { id: body.id } } },
     );
-    res.status(200).json({ message: 'The account has been deleted' });
+    res.status(200).json({ message: 'The account has been deleted', id: body.id });
   } catch (err) {
     res.status(400).json(err);
   }

@@ -8,13 +8,13 @@ import {
   GET_ACCOUNTS_LIST_FAIL,
 } from './index';
 
-export const deleteAccount = (accountName) => (dispatch) => {
+export const deleteAccount = (id) => (dispatch) => {
   axios
     .post(
-      'http://localhost:3030/api/accounts/delete',
+      'http://localhost:5000/api/accounts/delete',
       {
         /* eslint-disable  */
-        accountName,
+        id,
       },
       {
         headers: {
@@ -26,6 +26,7 @@ export const deleteAccount = (accountName) => (dispatch) => {
     .then((response) => {
       const { data } = response;
       dispatch({ type: DELETE_ACCOUNT_SUCCESS, payload: data });
+      dispatch(getAccounts);
     })
     .catch(({ response }) => {
       const { data } = response;
@@ -33,14 +34,14 @@ export const deleteAccount = (accountName) => (dispatch) => {
     });
 };
 
-export const addAccount = (accountName, accountValue) => (dispatch) => {
+export const addAccount = (name, value) => (dispatch) => {
   axios
     .post(
-      'http://localhost:3030/api/accounts/add',
+      'http://localhost:5000/api/accounts/add',
       {
         /* eslint-disable  */
-        accountName,
-        accountValue,
+        name,
+        value,
       },
       {
         headers: {
@@ -52,6 +53,7 @@ export const addAccount = (accountName, accountValue) => (dispatch) => {
     .then((response) => {
       const { data } = response;
       dispatch({ type: ADD_ACCOUNT_SUCCESS, payload: data });
+      dispatch(getAccounts);
     })
     .catch(({ response }) => {
       const { data } = response;
@@ -61,7 +63,7 @@ export const addAccount = (accountName, accountValue) => (dispatch) => {
 
 export const getAccounts = (dispatch) => {
   axios
-    .get('http://localhost:3030/api/accounts', {
+    .get('http://localhost:5000/api/accounts', {
       headers: {
         /* eslint-disable no-undef */
         'auth-token': localStorage.getItem('auth-token'),
@@ -69,10 +71,10 @@ export const getAccounts = (dispatch) => {
     })
     .then((response) => {
       const { data } = response;
-      dispatch({ type: GET_ACCOUNTS_LIST_SUCCESS, payload: data });
+      dispatch({ type: GET_ACCOUNTS_LIST_SUCCESS, payload: data.accounts });
     })
     .catch(({ response }) => {
-      const { data } = response;
-      dispatch({ type: GET_ACCOUNTS_LIST_FAIL, payload: data });
+      // const { data } = response;
+      dispatch({ type: GET_ACCOUNTS_LIST_FAIL, payload: response });
     });
 };
