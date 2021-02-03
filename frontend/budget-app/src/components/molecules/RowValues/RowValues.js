@@ -25,20 +25,35 @@ const StyledItem = styled.div`
   font-size: 14px;
 `;
 
-const RowValues = ({ options, data }) =>
-  data.map((item) => (
-    <StyledWrapper>
+const RowValues = ({ options, data, deleteAction }) => {
+  const deleteRecordEvent = (event) => {
+    deleteAction(event.target.id);
+  };
+
+  return data.map((item) => (
+    <StyledWrapper key={item.id}>
       <StyledItem>{item.date}</StyledItem>
       <StyledItem>{item.account}</StyledItem>
       <StyledItem>{item.category}</StyledItem>
       <StyledItem>{item.value}</StyledItem>
-      {options ? <ButtonIcon iconWhite={minusIconWhite} iconBlack={minusIconBlack} /> : ''}
+      {options ? (
+        <ButtonIcon
+          iconWhite={minusIconWhite}
+          iconBlack={minusIconBlack}
+          id={item.id}
+          onClick={(event) => deleteRecordEvent(event)}
+        />
+      ) : (
+        ''
+      )}
     </StyledWrapper>
   ));
+};
 
 RowValues.propTypes = {
   options: PropTypes.bool.isRequired,
   data: PropTypes.arrayOf(PropTypes.object),
+  deleteAction: PropTypes.func.isRequired,
 };
 
 RowValues.defaultProps = {

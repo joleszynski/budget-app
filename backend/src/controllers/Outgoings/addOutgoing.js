@@ -11,7 +11,7 @@ const addOutgoing = async (req, res) => {
 
   //VALIDATION DATA
   const { error } = addValidation(body);
-  if (error) return res.status(400).json(error.details[0].message);
+  if (error) return res.status(400).json({ message: error.details[0].message });
 
   const userObject = await User.findOne({
     _id: user,

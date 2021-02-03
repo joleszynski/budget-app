@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import Heading from 'components/atoms/Heading/Heading';
 
 const pageNameValue = {
-  outgoings: ['Date', 'Category', 'Purpose', 'Value'],
+  outgoings: ['Date', 'Account', 'Category', 'Value'],
   transfers: ['Date', 'From', 'To', 'Value'],
-  income: ['Date', 'To', 'What', 'Value'],
+  income: ['Date', 'Account', 'For', 'Value'],
 };
 
 const StyledWrapper = styled.div`
@@ -29,8 +29,8 @@ const StyledHeading = styled(Heading)`
 
 const NameHeading = ({ pageType }) => (
   <StyledWrapper>
-    {pageNameValue[pageType].map((name) => (
-      <StyledBox>
+    {pageNameValue[pageType].map((name, i) => (
+      <StyledBox key={String(i)}>
         <StyledHeading>{name}</StyledHeading>
       </StyledBox>
     ))}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getOutgoingsList, addOutgoingRecord } from 'actions/outgoings';
+import { getOutgoingsList, addOutgoingRecord, deleteOutgoingRecord } from 'actions/outgoings';
 import DashboardTemplate from 'templates/DashboardTemplate';
 import DashboardInnerTemplate from 'templates/DashboradInnerTemplate';
 
@@ -12,7 +12,7 @@ class OutgoingsPage extends React.Component {
   }
 
   render() {
-    const { outgoingsList, addOutgoingRecordAction } = this.props;
+    const { outgoingsList, addOutgoingRecordAction, deleteOutgoingRecordAction } = this.props;
 
     return (
       <DashboardTemplate name="Outgoings">
@@ -20,6 +20,7 @@ class OutgoingsPage extends React.Component {
           pageType="outgoings"
           data={outgoingsList}
           addAction={addOutgoingRecordAction}
+          deleteAction={deleteOutgoingRecordAction}
         />
       </DashboardTemplate>
     );
@@ -30,6 +31,7 @@ OutgoingsPage.propTypes = {
   getOutgoingsListAction: PropTypes.func.isRequired,
   outgoingsList: PropTypes.arrayOf(PropTypes.object),
   addOutgoingRecordAction: PropTypes.func.isRequired,
+  deleteOutgoingRecordAction: PropTypes.func.isRequired,
 };
 
 OutgoingsPage.defaultProps = {
@@ -48,6 +50,7 @@ const mapDispatchToProps = (dispatch) => {
     getOutgoingsListAction: () => dispatch(getOutgoingsList),
     addOutgoingRecordAction: (date, account, category, value) =>
       dispatch(addOutgoingRecord(date, account, category, value)),
+    deleteOutgoingRecordAction: (id) => dispatch(deleteOutgoingRecord(id)),
   };
 };
 

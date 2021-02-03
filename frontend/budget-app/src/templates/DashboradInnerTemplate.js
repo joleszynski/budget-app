@@ -9,17 +9,18 @@ const StyledWrapper = styled.div`
   width: 100%;
 `;
 
-const DashboardInnerTemplate = ({ pageType, data, addAction }) => (
+const DashboardInnerTemplate = ({ pageType, data, addAction, deleteAction }) => (
   <StyledWrapper>
     <NameHeading pageType={pageType} />
     <InputBar pageType={pageType} addAction={addAction} />
-    <RowValues data={data} />
+    <RowValues data={data} deleteAction={deleteAction} />
   </StyledWrapper>
 );
 
 DashboardInnerTemplate.propTypes = {
   pageType: PropTypes.string.isRequired,
   addAction: PropTypes.func.isRequired,
+  deleteAction: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

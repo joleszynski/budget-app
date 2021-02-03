@@ -5,7 +5,7 @@ const listOutgoings = async (req, res) => {
 
   try {
     const { outgoings } = await User.findOne({ _id: user });
-    res.status(200).json({ outgoings: outgoings });
+    res.status(200).json({ outgoings: outgoings.reverse() });
   } catch (err) {
     res.status(400).json({ message: err });
   }
