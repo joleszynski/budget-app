@@ -50,5 +50,4 @@ const mapDispatchToProps = (dispatch) => {
     getAccountsAction: () => dispatch(getAccounts),
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(AccountsPage);

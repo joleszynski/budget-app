@@ -8,9 +8,9 @@ Joi.objectId = joiObjectid(Joi);
 const addValidation = (data) => {
   const schema = Joi.object({
     id: Joi.objectId().required(),
-    date: Joi.date(),
-    from: Joi.string().min(4).required(),
-    to: Joi.string().min(4).required(),
+    date: Joi.string(),
+    account: Joi.string().min(4).required(),
+    category: Joi.string().min(4).required(),
     value: Joi.number().min(3).required(),
   });
   return schema.validate(data);

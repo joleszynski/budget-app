@@ -6,7 +6,7 @@ import Heading from 'components/atoms/Heading/Heading';
 const pageNameValue = {
   outgoings: ['Date', 'Account', 'Category', 'Value'],
   transfers: ['Date', 'From', 'To', 'Value'],
-  income: ['Date', 'Account', 'For', 'Value'],
+  income: ['Date', 'Account', 'Category', 'Value'],
 };
 
 const StyledWrapper = styled.div`

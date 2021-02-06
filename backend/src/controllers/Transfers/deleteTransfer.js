@@ -6,7 +6,7 @@ const deleteTransfer = async (req, res) => {
 
   //VALIDATION DATA
   const { error } = deleteValidation(body);
-  if (error) return res.status(400).json(error.details[0].message);
+  if (error) return res.status(400).json({ message: error.details[0].message });
 
   // Check if the outgoing record exist
   const transferRecordExist = await User.findOne({
@@ -22,10 +22,12 @@ const deleteTransfer = async (req, res) => {
 
   const transferRecord = userObject.transfers.find((el) => el.id === body.id);
 
-  const currentFromAccountValue = userObject.accounts.find((el) => el.name === transferRecord.from)
-    .value;
-  const currentToAccountValue = userObject.accounts.find((el) => el.name === transferRecord.to)
-    .value;
+  const currentFromAccountValue = userObject.accounts.find(
+    (el) => el.name === transferRecord.account,
+  ).value;
+  const currentToAccountValue = userObject.accounts.find(
+    (el) => el.name === transferRecord.category,
+  ).value;
 
   const newFromValue = parseInt(currentFromAccountValue) + parseInt(transferRecord.value);
   const newToValue = parseInt(currentToAccountValue) - parseInt(transferRecord.value);
@@ -41,7 +43,7 @@ const deleteTransfer = async (req, res) => {
     await User.updateOne(
       {
         _id: user,
-        'accounts.name': transferRecord.from,
+        'accounts.name': transferRecord.account,
       },
       { $set: { 'accounts.$.value': newFromValue } },
     );
@@ -49,14 +51,14 @@ const deleteTransfer = async (req, res) => {
     await User.updateOne(
       {
         _id: user,
-        'accounts.name': transferRecord.to,
+        'accounts.name': transferRecord.category,
       },
       { $set: { 'accounts.$.value': newToValue } },
     );
 
     res.status(200).json({ message: `Success transfer delete !` });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ message: err });
   }
 };
 
