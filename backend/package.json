@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "nodemon --exec babel-node src/start.js",
+    "debug": "nodemon --exec babel-node --inspect src/start.js",
     "test": "jest --runInBand", 
     "test:watch": "jest --watch"
   },
