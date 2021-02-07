@@ -72,7 +72,7 @@ const AccountItem = ({ id, accountName, accountValue, options, deleteAccountActi
 AccountItem.propTypes = {
   id: PropTypes.string.isRequired,
   accountName: PropTypes.string.isRequired,
-  accountValue: PropTypes.string.isRequired,
+  accountValue: PropTypes.number.isRequired,
   options: PropTypes.bool.isRequired,
   deleteAccountAction: PropTypes.func.isRequired,
 };

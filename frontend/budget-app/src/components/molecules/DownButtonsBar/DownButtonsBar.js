@@ -56,7 +56,7 @@ const DownButtonBar = ({
       to="/accounts"
       secondary="true"
       onClick={toggleAccountsAction}
-      toggleblack={dashboardState === 'accounts' ? 'true' : null}
+      toggleblack={dashboardState === '/accounts' ? 'true' : null}
       activeclass="active"
     >
       Account Balance
@@ -66,7 +66,7 @@ const DownButtonBar = ({
       to="/outgoings"
       secondary="true"
       onClick={toggleOutgoingsAction}
-      toggleblack={dashboardState === 'outgoings' ? 'true' : null}
+      toggleblack={dashboardState === '/outgoings' ? 'true' : null}
     >
       Outgoings
     </StyledButtonLink>
@@ -75,7 +75,7 @@ const DownButtonBar = ({
       to="/transfers"
       secondary="true"
       onClick={toggleTransfersAction}
-      toggleblack={dashboardState === 'transfers' ? 'true' : null}
+      toggleblack={dashboardState === '/transfers' ? 'true' : null}
     >
       Transfers
     </StyledButtonLink>
@@ -84,7 +84,7 @@ const DownButtonBar = ({
       to="/income"
       secondary="true"
       onClick={toggleIncomeAction}
-      toggleblack={dashboardState === 'income' ? 'true' : null}
+      toggleblack={dashboardState === '/income' ? 'true' : null}
     >
       Income
     </StyledButtonLink>

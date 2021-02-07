@@ -11,7 +11,8 @@ import {
 const initialState = {
   options: false,
   modalDisplay: false,
-  dashboardState: 'accounts',
+  // eslint-disable-next-line no-undef
+  dashboardState: window.location.pathname,
 };
 
 export default function toggle(state = initialState, { type }) {
@@ -34,22 +35,22 @@ export default function toggle(state = initialState, { type }) {
     case TOGGLE_ACCOUNTS:
       return {
         ...state,
-        dashboardState: 'accounts',
+        dashboardState: '/accounts',
       };
     case TOGGLE_INCOME:
       return {
         ...state,
-        dashboardState: 'income',
+        dashboardState: '/income',
       };
     case TOGGLE_OUTGOINGS:
       return {
         ...state,
-        dashboardState: 'outgoings',
+        dashboardState: '/outgoings',
       };
     case TOGGLE_TRANSFERS:
       return {
         ...state,
-        dashboardState: 'transfers',
+        dashboardState: '/transfers',
       };
     default:
       return state;

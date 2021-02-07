@@ -54,6 +54,10 @@ class Modal extends React.Component {
     this.setState({ [target.id]: target.value });
   };
 
+  clearState = () => {
+    this.setState({ name: '', value: 0 });
+  };
+
   render() {
     const { modalDisplay, displayModalOffAction, addAccountAction } = this.props;
     const { name, value } = this.state;
@@ -78,7 +82,11 @@ class Modal extends React.Component {
                 value={value}
               />
               <Button
-                onClick={() => addAccountAction(name, parseFloat(value), displayModalOffAction())}
+                onClick={() => {
+                  addAccountAction(name, parseFloat(value));
+                  displayModalOffAction();
+                  this.clearState();
+                }}
               >
                 Add
               </Button>

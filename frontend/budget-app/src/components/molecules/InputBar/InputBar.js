@@ -58,6 +58,10 @@ class InputBar extends React.Component {
     this.setState({ [target.id]: target.value });
   };
 
+  clearState = () => {
+    this.setState({ account: '', category: '', value: '' });
+  };
+
   render() {
     const { account, category, value } = this.state;
     const { addAction } = this.props;
@@ -77,7 +81,10 @@ class InputBar extends React.Component {
         <StyledButton
           iconWhite={plusIconWhite}
           iconBlack={plusIconBlack}
-          onClick={() => addAction(time, account, category, value)}
+          onClick={() => {
+            addAction(time, account, category, value);
+            this.clearState();
+          }}
         />
       </StyledWrapper>
     );

@@ -58,9 +58,9 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const DashboardHeading = ({ name, toggleAction }) => (
+const DashboardHeading = ({ name, toggleAction, options }) => (
   <StyledTemplateHeading>
-    <StyledButton secondary onClick={toggleAction}>
+    <StyledButton secondary options={options} onClick={toggleAction}>
       Options
     </StyledButton>
     <StyledHeadingText>
@@ -75,6 +75,7 @@ const DashboardHeading = ({ name, toggleAction }) => (
 DashboardHeading.propTypes = {
   toggleAction: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  options: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -83,4 +84,11 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(DashboardHeading);
+const mapStateToProps = ({ toggle }) => {
+  const { options } = toggle;
+  return {
+    options,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardHeading);
