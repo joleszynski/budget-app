@@ -11,9 +11,7 @@ export const authenticate = (email, password) => (dispatch) => {
       dispatch({ type: AUTH_SUCCESS, payload });
     })
     .catch(({ message }) => {
-      // const { data } = response;
-      console.log(message);
-      dispatch({ type: AUTH_FAILURE, payload: 'payload' });
+      dispatch({ type: AUTH_FAILURE, payload: message });
     });
 };
 
