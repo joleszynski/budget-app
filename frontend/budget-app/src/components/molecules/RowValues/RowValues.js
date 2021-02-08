@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ButtonIcon from 'components/atoms/ButtonIconMinus/ButtonIconMinus';
-import minusIconWhite from 'assets/icons/minusWhite.svg';
-import minusIconBlack from 'assets/icons/minusBlack.svg';
+import { ButtonIconMinus } from 'components/atoms/ButtonIcon/ButtonIcon';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -37,12 +35,7 @@ const RowValues = ({ options, data, deleteAction }) => {
       <StyledItem>{item.category}</StyledItem>
       <StyledItem>{item.value}</StyledItem>
       {options ? (
-        <ButtonIcon
-          iconWhite={minusIconWhite}
-          iconBlack={minusIconBlack}
-          id={item.id}
-          onClick={(event) => deleteRecordEvent(event)}
-        />
+        <ButtonIconMinus id={item.id} onClick={(event) => deleteRecordEvent(event)} />
       ) : (
         ''
       )}

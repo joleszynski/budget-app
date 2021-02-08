@@ -1,16 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
-import ButtonIcon from 'components/atoms/ButtonIconMinus/ButtonIconMinus';
-import plusIconWhite from 'assets/icons/plusWhite.svg';
-import plusIconBlack from 'assets/icons/plusBlack.svg';
+import { ButtonIconPlus } from 'components/atoms/ButtonIcon/ButtonIcon';
 import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
@@ -43,9 +41,7 @@ const StyledItem = styled.div`
   font-size: 14px;
 `;
 
-const StyledButton = styled(ButtonIcon)`
-  margin-right: 20px;
-`;
+const StyledButton = styled(ButtonIconPlus)``;
 
 class InputBar extends React.Component {
   state = {
@@ -79,8 +75,6 @@ class InputBar extends React.Component {
           <StyledInput onChange={this.handleChange} type="text" id="value" value={value} />
         </StyledInputWrapper>
         <StyledButton
-          iconWhite={plusIconWhite}
-          iconBlack={plusIconBlack}
           onClick={() => {
             addAction(time, account, category, value);
             this.clearState();
