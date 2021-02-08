@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 
 const pageNameValue = {
@@ -10,7 +10,7 @@ const pageNameValue = {
 };
 
 const StyledWrapper = styled.div`
-  width: 95%;
+  width: 100%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
@@ -18,9 +18,9 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledBox = styled.div`
-  width: 18%;
+  width: 12%;
   height: 30px;
-  border-bottom: 1px solid ${({ theme }) => theme.mainColor};
+  border-bottom: 2px solid ${({ theme }) => theme.greyColor};
 `;
 
 const StyledHeading = styled(Heading)`

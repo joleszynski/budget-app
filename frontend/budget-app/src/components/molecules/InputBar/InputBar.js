@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import { ButtonIconPlus } from 'components/atoms/ButtonIcon/ButtonIcon';
-import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div`
   margin-top: 10px;
