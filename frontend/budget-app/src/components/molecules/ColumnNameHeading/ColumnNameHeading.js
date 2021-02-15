@@ -9,8 +9,13 @@ const pageNameValue = {
   income: ['Date', 'Account', 'Category', 'Value'],
 };
 
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const StyledWrapper = styled.div`
-  width: 100%;
+  width: 94%;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
@@ -18,7 +23,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledBox = styled.div`
-  width: 12%;
+  width: 14%;
   height: 30px;
   border-bottom: 2px solid ${({ theme }) => theme.greyColor};
 `;
@@ -27,14 +32,21 @@ const StyledHeading = styled(Heading)`
   font-size: 20px;
 `;
 
+const StyledFill = styled.div`
+  width: 6%;
+`;
+
 const NameHeading = ({ pageType }) => (
-  <StyledWrapper>
-    {pageNameValue[pageType].map((name, i) => (
-      <StyledBox key={String(i)}>
-        <StyledHeading>{name}</StyledHeading>
-      </StyledBox>
-    ))}
-  </StyledWrapper>
+  <Wrapper>
+    <StyledWrapper>
+      {pageNameValue[pageType].map((name, i) => (
+        <StyledBox key={String(i)}>
+          <StyledHeading>{name}</StyledHeading>
+        </StyledBox>
+      ))}
+    </StyledWrapper>
+    <StyledFill />
+  </Wrapper>
 );
 
 NameHeading.propTypes = {

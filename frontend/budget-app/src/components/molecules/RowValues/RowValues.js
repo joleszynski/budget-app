@@ -4,23 +4,34 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ButtonIconMinus } from 'components/atoms/ButtonIcon/ButtonIcon';
 
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const StyledWrapper = styled.div`
-  width: 100%;
-  margin-top: 15px;
+  width: 94%;
+  height: 45px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
 
 const StyledItem = styled.div`
-  width: 18%;
+  width: 15%;
   height: 30px;
   border-radius: 5px;
   background-color: grey;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
+`;
+
+const StyledFill = styled.div`
+  width: 6%;
+  display: flex;
+  align-items: center;
 `;
 
 const RowValues = ({ options, data, deleteAction }) => {
@@ -29,17 +40,22 @@ const RowValues = ({ options, data, deleteAction }) => {
   };
 
   return data.map((item) => (
-    <StyledWrapper key={item.id}>
-      <StyledItem>{item.date}</StyledItem>
-      <StyledItem>{item.account}</StyledItem>
-      <StyledItem>{item.category}</StyledItem>
-      <StyledItem>{item.value}</StyledItem>
-      {options ? (
-        <ButtonIconMinus id={item.id} onClick={(event) => deleteRecordEvent(event)} />
-      ) : (
-        ''
-      )}
-    </StyledWrapper>
+    <Wrapper>
+      <StyledWrapper key={item.id}>
+        <StyledItem>{item.date}</StyledItem>
+        <StyledItem>{item.account}</StyledItem>
+        <StyledItem>{item.category}</StyledItem>
+        <StyledItem>{item.value}</StyledItem>
+      </StyledWrapper>
+      <StyledFill>
+        {' '}
+        {options ? (
+          <ButtonIconMinus id={item.id} onClick={(event) => deleteRecordEvent(event)} />
+        ) : (
+          ''
+        )}
+      </StyledFill>
+    </Wrapper>
   ));
 };
 

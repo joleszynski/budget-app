@@ -4,25 +4,22 @@ import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import { ButtonIconPlus } from 'components/atoms/ButtonIcon/ButtonIcon';
 
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const StyledWrapper = styled.div`
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0 10px 0;
+  width: 94%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
-
-const StyledInputWrapper = styled.div`
-  width: 95%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
 const StyledInput = styled(Input)`
-  width: 18%;
+  width: 15%;
   height: 30px;
-  font-size: 14px;
+  font-size: 12px;
 
   &:focus-visible {
     font-family: 'Montserrat';
@@ -31,17 +28,23 @@ const StyledInput = styled(Input)`
 `;
 
 const StyledItem = styled.div`
-  width: 18%;
+  width: 15%;
   height: 30px;
   border-radius: 5px;
   background-color: grey;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
 `;
 
 const StyledButton = styled(ButtonIconPlus)``;
+
+const StyledFill = styled.div`
+  width: 6%;
+  display: flex;
+  align-items: center;
+`;
 
 class InputBar extends React.Component {
   state = {
@@ -65,22 +68,25 @@ class InputBar extends React.Component {
     const time = new Date().toLocaleDateString('pl-PL', options);
 
     return (
-      <StyledWrapper>
-        <StyledInputWrapper>
+      <Wrapper>
+        <StyledWrapper>
           <StyledItem type="text" id="date">
             {time}
           </StyledItem>
           <StyledInput onChange={this.handleChange} type="text" id="account" value={account} />
           <StyledInput onChange={this.handleChange} type="text" id="category" value={category} />
           <StyledInput onChange={this.handleChange} type="text" id="value" value={value} />
-        </StyledInputWrapper>
-        <StyledButton
-          onClick={() => {
-            addAction(time, account, category, value);
-            this.clearState();
-          }}
-        />
-      </StyledWrapper>
+        </StyledWrapper>
+        <StyledFill>
+          {' '}
+          <StyledButton
+            onClick={() => {
+              addAction(time, account, category, value);
+              this.clearState();
+            }}
+          />
+        </StyledFill>
+      </Wrapper>
     );
   }
 }
