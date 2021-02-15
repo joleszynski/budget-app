@@ -38,14 +38,15 @@ const VerticalLine = styled.div`
   }
 `;
 
-export const ButtonIconMinus = () => (
-  <Border>
+/*eslint-disable */
+export const ButtonIconMinus = ({ ...rootDOMAttributes }) => (
+  <Border {...rootDOMAttributes}>
     <HorizontalLine />
   </Border>
 );
 
-export const ButtonIconPlus = () => (
-  <Border>
+export const ButtonIconPlus = ({ ...rootDOMAttributes }) => (
+  <Border {...rootDOMAttributes}>
     <HorizontalLine />
     <VerticalLine />
   </Border>

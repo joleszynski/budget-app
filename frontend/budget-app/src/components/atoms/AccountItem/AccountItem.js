@@ -43,6 +43,7 @@ const RightSideItem = styled.div`
 
 const AccountItem = ({ id, accountName, accountValue, options, deleteAccountAction }) => {
   const deleteAccountEvent = (event) => {
+    console.log(event.target.id);
     deleteAccountAction(event.target.id);
   };
 

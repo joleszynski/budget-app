@@ -36,6 +36,7 @@ const StyledFill = styled.div`
 
 const RowValues = ({ options, data, deleteAction }) => {
   const deleteRecordEvent = (event) => {
+    console.log(event.target.id);
     deleteAction(event.target.id);
   };
 
