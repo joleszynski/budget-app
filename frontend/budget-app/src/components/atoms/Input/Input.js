@@ -5,7 +5,7 @@ const Input = styled.input`
   height: 50px;
   font-size: 27px;
   font-family: ${({ theme }) => theme.decorativeFonts};
-  padding-left: 15px;
+  text-align: center;
 `;
 
 export default Input;
