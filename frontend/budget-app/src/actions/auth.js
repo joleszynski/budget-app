@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_SUCCESS, AUTH_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE } from './index';
+import { AUTH_SUCCESS, AUTH_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT } from './index';
 
 export const authenticate = (email, password) => (dispatch) => {
   axios
@@ -29,4 +29,8 @@ export const register = (name, email, password) => (dispatch) => {
       const { text } = response;
       dispatch({ type: REGISTER_FAILURE, payload: text });
     });
+};
+
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT });
 };

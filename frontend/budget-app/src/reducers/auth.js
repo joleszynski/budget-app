@@ -1,4 +1,4 @@
-import { AUTH_FAILURE, AUTH_SUCCESS, REGISTER_SUCCESS, REGISTER_FAILURE } from 'actions';
+import { AUTH_FAILURE, AUTH_SUCCESS, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT } from 'actions';
 
 const initialState = {
   loggedIn: false,
@@ -33,6 +33,11 @@ export default function auth(state = initialState, { type, payload }) {
     case REGISTER_FAILURE:
       return {
         registered: false,
+      };
+    case LOGOUT:
+      localStorage.clear();
+      return {
+        initialState,
       };
     default:
       return state;
