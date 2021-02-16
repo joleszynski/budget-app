@@ -29,8 +29,8 @@ const deleteTransfer = async (req, res) => {
     (el) => el.name === transferRecord.category,
   ).value;
 
-  const newFromValue = parseInt(currentFromAccountValue) + parseInt(transferRecord.value);
-  const newToValue = parseInt(currentToAccountValue) - parseInt(transferRecord.value);
+  const newFromValue = parseFloat(currentFromAccountValue) + parseFloat(transferRecord.value);
+  const newToValue = parseFloat(currentToAccountValue) - parseFloat(transferRecord.value);
 
   try {
     await User.updateOne(
