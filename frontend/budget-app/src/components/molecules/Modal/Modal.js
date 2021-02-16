@@ -51,7 +51,7 @@ class Modal extends React.Component {
   };
 
   handleChange = ({ target }) => {
-    this.setState({ [target.id]: target.accountValue });
+    this.setState({ [target.id]: target.value });
   };
 
   clearState = () => {
@@ -102,8 +102,7 @@ class Modal extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     displayModalOffAction: () => dispatch(displayModalOff()),
-    addAccountAction: (accountName, accountValue) =>
-      dispatch(addAccount(accountName, accountValue)),
+    addAccountAction: (name, accountValue) => dispatch(addAccount(name, accountValue)),
   };
 };
 

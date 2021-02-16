@@ -11,7 +11,7 @@ const addAccount = async (req, res) => {
 
   //VALIDATION DATA
   const { error } = addValidation(body);
-  if (error) return res.status(400).json(error.details[0].message);
+  if (error) return res.status(400).json({ message: error.details[0].message });
 
   const { value } = body;
   body.value = parseFloat(value).toFixed(2);
@@ -28,7 +28,7 @@ const addAccount = async (req, res) => {
     await User.updateOne({ _id: user }, { $push: { accounts: body } });
     res.status(200).json({ message: 'Account added successfully !', account: body });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ message: err });
   }
 };
 
