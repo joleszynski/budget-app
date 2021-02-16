@@ -21,9 +21,9 @@ const addTransfer = async (req, res) => {
   const currentFromAccountValue = userObject.accounts.find((el) => el.name === account).value;
   const currentToAccountValue = userObject.accounts.find((el) => el.name === category).value;
 
-  const newFromAccountValue = parseInt(currentFromAccountValue) - parseInt(value);
+  const newFromAccountValue = parseInt(currentFromAccountValue) - parseFloat(value);
 
-  const newToAccountValue = parseInt(currentToAccountValue) + parseInt(value);
+  const newToAccountValue = parseInt(currentToAccountValue) + parseFloat(value);
 
   try {
     await User.updateOne({ _id: user }, { $push: { transfers: body } });
