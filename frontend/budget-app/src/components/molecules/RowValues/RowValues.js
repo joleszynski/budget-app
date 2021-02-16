@@ -41,8 +41,8 @@ const RowValues = ({ options, data, deleteAction }) => {
   };
 
   return data.map((item) => (
-    <Wrapper>
-      <StyledWrapper key={item.id}>
+    <Wrapper key={item.id}>
+      <StyledWrapper>
         <StyledItem>{item.date}</StyledItem>
         <StyledItem>{item.account}</StyledItem>
         <StyledItem>{item.category}</StyledItem>

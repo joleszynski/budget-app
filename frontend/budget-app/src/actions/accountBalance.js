@@ -34,14 +34,14 @@ export const deleteAccount = (id) => (dispatch) => {
     });
 };
 
-export const addAccount = (name, value) => (dispatch) => {
+export const addAccount = (name, accountValue) => (dispatch) => {
   axios
     .post(
       'http://localhost:5000/api/accounts/add',
       {
         /* eslint-disable  */
         name,
-        value,
+        value: accountValue,
       },
       {
         headers: {

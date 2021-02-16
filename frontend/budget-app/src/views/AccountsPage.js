@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAccounts } from 'actions/accountBalance';
 import DashboardTemplate from 'templates/DashboardTemplate';
-import AccountItem from 'components/atoms/AccountItem/AccountItem';
+import AccountItem from 'components/molecules/AccountItem/AccountItem';
 import ToggleModalButton from 'components/molecules/ToggleModalButton/ToggleModalButton';
 
 class AccountsPage extends React.Component {

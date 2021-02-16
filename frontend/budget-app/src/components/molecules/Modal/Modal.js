@@ -47,20 +47,20 @@ const StyledInnerModal = styled.div`
 class Modal extends React.Component {
   state = {
     name: '',
-    value: '',
+    accountValue: '',
   };
 
   handleChange = ({ target }) => {
-    this.setState({ [target.id]: target.value });
+    this.setState({ [target.id]: target.accountValue });
   };
 
   clearState = () => {
-    this.setState({ name: '', value: '' });
+    this.setState({ name: '', accountValue: '' });
   };
 
   render() {
     const { modalDisplay, displayModalOffAction, addAccountAction } = this.props;
-    const { name, value } = this.state;
+    const { name, accountValue } = this.state;
 
     return (
       <StyledWrapper modalDisplay={modalDisplay}>
@@ -76,14 +76,14 @@ class Modal extends React.Component {
               />
               <Input
                 onChange={this.handleChange}
-                id="value"
+                id="accountValue"
                 placeholder="Value"
                 type="text"
-                value={value}
+                value={accountValue}
               />
               <Button
                 onClick={() => {
-                  addAccountAction(name, parseFloat(value));
+                  addAccountAction(name, parseFloat(accountValue));
                   displayModalOffAction();
                   this.clearState();
                 }}
