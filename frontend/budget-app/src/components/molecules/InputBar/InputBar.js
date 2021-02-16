@@ -20,22 +20,19 @@ const StyledInput = styled(Input)`
   width: 15%;
   height: 30px;
   font-size: 12px;
-
-  &:focus-visible {
-    font-family: 'Montserrat';
-    font-size: 14px;
-  }
+  font-family: ${({ theme }) => theme.decorativeFonts};
 `;
 
 const StyledItem = styled.div`
   width: 15%;
   height: 30px;
   border-radius: 5px;
-  background-color: grey;
+  background-color: ${({ theme }) => theme.greyColor};
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 12px;
+  font-family: ${({ theme }) => theme.decorativeFonts};
 `;
 
 const StyledButton = styled(ButtonIconPlus)``;

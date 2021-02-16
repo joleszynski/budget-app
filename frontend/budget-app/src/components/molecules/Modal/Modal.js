@@ -47,7 +47,7 @@ const StyledInnerModal = styled.div`
 class Modal extends React.Component {
   state = {
     name: '',
-    value: 0,
+    value: '',
   };
 
   handleChange = ({ target }) => {
@@ -55,7 +55,7 @@ class Modal extends React.Component {
   };
 
   clearState = () => {
-    this.setState({ name: '', value: 0 });
+    this.setState({ name: '', value: '' });
   };
 
   render() {

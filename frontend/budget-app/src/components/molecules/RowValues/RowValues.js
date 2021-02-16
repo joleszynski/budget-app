@@ -21,11 +21,12 @@ const StyledItem = styled.div`
   width: 15%;
   height: 30px;
   border-radius: 5px;
-  background-color: grey;
+  background-color: ${({ theme }) => theme.greyColor};
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: 12px;
+  font-family: ${({ theme }) => theme.decorativeFonts};
 `;
 
 const StyledFill = styled.div`
@@ -36,7 +37,6 @@ const StyledFill = styled.div`
 
 const RowValues = ({ options, data, deleteAction }) => {
   const deleteRecordEvent = (event) => {
-    console.log(event.target.id);
     deleteAction(event.target.id);
   };
 

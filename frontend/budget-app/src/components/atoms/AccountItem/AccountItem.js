@@ -41,9 +41,12 @@ const RightSideItem = styled.div`
   margin-right: 20px;
 `;
 
+const StyledButton = styled(ButtonIconMinus)`
+  margin-left: 20px;
+`;
+
 const AccountItem = ({ id, accountName, accountValue, options, deleteAccountAction }) => {
   const deleteAccountEvent = (event) => {
-    console.log(event.target.id);
     deleteAccountAction(event.target.id);
   };
 
@@ -53,7 +56,7 @@ const AccountItem = ({ id, accountName, accountValue, options, deleteAccountActi
       <RightSideItem>
         {parseFloat(accountValue).toFixed(2)}
         {options ? (
-          <ButtonIconMinus
+          <StyledButton
             id={id}
             value={accountName}
             onClick={(event) => deleteAccountEvent(event)}

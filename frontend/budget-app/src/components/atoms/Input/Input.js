@@ -6,11 +6,6 @@ const Input = styled.input`
   font-size: 27px;
   font-family: ${({ theme }) => theme.decorativeFonts};
   padding-left: 15px;
-
-  &:focus-visible {
-    font-family: 'Montserrat';
-    font-size: 23px;
-  }
 `;
 
 export default Input;
