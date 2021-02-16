@@ -11,7 +11,7 @@ const addValidation = (data) => {
     date: Joi.string().min(3).required(),
     account: Joi.string().min(4).required(),
     category: Joi.string().min(4).required(),
-    value: Joi.number().min(3).required(),
+    value: Joi.number().required(),
   });
   return schema.validate(data);
 };
